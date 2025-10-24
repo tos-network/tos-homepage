@@ -182,7 +182,7 @@
   align-items: center;
   justify-content: space-between;
   gap: var(--spacing-sm);
-  width: 140px;
+  min-width: 110px;
   height: 40px;
   padding: 0 var(--spacing-md);
   background: transparent;
@@ -203,15 +203,11 @@
   border-color: var(--primary-blue);
 }
 
-.language-btn .flag {
-  font-size: 18px;
-  line-height: 1;
-}
-
-#currentLang {
+.language-label {
   flex: 1;
   text-align: left;
   font-weight: var(--font-weight-normal);
+  color: var(--text-secondary);
 }
 
 .dropdown-arrow {

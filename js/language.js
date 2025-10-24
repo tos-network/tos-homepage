@@ -11,8 +11,6 @@
       this.languageBtn = document.getElementById('languageBtn');
       this.languageDropdown = document.getElementById('languageDropdown');
       this.languageBackdrop = document.getElementById('languageBackdrop');
-      this.currentLangSpan = document.getElementById('currentLang');
-      this.currentFlagSpan = document.getElementById('currentFlag');
       this.languageSelector = document.getElementById('languageSelector');
       this.languageOptions = document.querySelectorAll('.language-option');
       this.isOpen = false;
@@ -23,8 +21,8 @@
     init() {
       if (!this.languageBtn || !window.i18n) return;
 
-      // Update UI to show current language
-      this.updateCurrentLanguageDisplay();
+      // Update active language option
+      this.updateActiveOption(window.i18n.getCurrentLanguage());
 
       // Language button click handler
       this.languageBtn.addEventListener('click', (e) => {
@@ -56,8 +54,8 @@
       });
 
       // Listen for language changes from other sources
-      window.addEventListener('languageChanged', () => {
-        this.updateCurrentLanguageDisplay();
+      window.addEventListener('languageChanged', (e) => {
+        this.updateActiveOption(e.detail.lang);
       });
     }
 
@@ -89,27 +87,11 @@
       // Set language
       window.i18n.setLanguage(lang);
 
-      // Update UI
-      this.updateCurrentLanguageDisplay();
+      // Update active option
       this.updateActiveOption(lang);
+
+      // Close dropdown
       this.closeDropdown();
-    }
-
-    updateCurrentLanguageDisplay() {
-      if (!window.i18n) return;
-
-      const currentLang = window.i18n.getCurrentLanguage();
-      const langMap = {
-        'en': { name: 'English', flag: '🇺🇸' },
-        'zh': { name: '中文', flag: '🇨🇳' },
-        'ja': { name: '日本語', flag: '🇯🇵' },
-        'ko': { name: '한국어', flag: '🇰🇷' }
-      };
-
-      const langData = langMap[currentLang] || langMap['en'];
-      this.currentLangSpan.textContent = langData.name;
-      this.currentFlagSpan.textContent = langData.flag;
-      this.updateActiveOption(currentLang);
     }
 
     updateActiveOption(lang) {

@@ -67,6 +67,10 @@ const translations = {
     'cta.readDocs': 'Read Documentation',
     'cta.viewGithub': 'View on GitHub',
 
+    // Performance Stats Section
+    'performance.title': '1-second Blockchain & Top-level Performance',
+    'performance.subtitle': 'Industry-leading throughput and finality for the AI-powered future',
+
     // Documentation Section
     'docs.title': 'Documentation',
     'docs.desc': 'Comprehensive guides and references for developing on TOS Network, from getting started to advanced features.',
@@ -195,6 +199,10 @@ const translations = {
     'cta.subtitle': '加入 AGI 经济革命。今天开始构建、挖矿或赚取收益。',
     'cta.readDocs': '阅读文档',
     'cta.viewGithub': '在 GitHub 上查看',
+
+    // Performance Stats Section
+    'performance.title': '1秒区块链与顶级性能',
+    'performance.subtitle': '为AI驱动的未来提供行业领先的吞吐量和最终确定性',
 
     // Documentation Section
     'docs.title': '文档',
@@ -325,6 +333,10 @@ const translations = {
     'cta.readDocs': 'ドキュメントを読む',
     'cta.viewGithub': 'GitHubで見る',
 
+    // Performance Stats Section
+    'performance.title': '1秒ブロックチェーンとトップレベルのパフォーマンス',
+    'performance.subtitle': 'AI駆動の未来のための業界をリードするスループットとファイナリティ',
+
     // Documentation Section
     'docs.title': 'ドキュメント',
     'docs.desc': 'TOSネットワークでの開発のための包括的なガイドとリファレンス、入門から高度な機能まで。',
@@ -453,6 +465,10 @@ const translations = {
     'cta.subtitle': 'AGI 경제 혁명에 참여하세요. 오늘 구축, 마이닝 또는 수익 창출을 시작하세요.',
     'cta.readDocs': '문서 읽기',
     'cta.viewGithub': 'GitHub에서 보기',
+
+    // Performance Stats Section
+    'performance.title': '1초 블록체인 및 최고 수준 성능',
+    'performance.subtitle': 'AI 구동 미래를 위한 업계 최고의 처리량과 최종성',
 
     // Documentation Section
     'docs.title': '문서',

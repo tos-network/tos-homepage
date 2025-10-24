@@ -1,6 +1,6 @@
 /* ============================================
    TOS Network - Elite Enhancements
-   JP Morgan / BlackRock / Sequoia Level
+   Premium Financial Platform Design
    ============================================ */
 
 /* ============================================
@@ -354,64 +354,320 @@
 }
 
 /* ============================================
-   WHITEPAPER ICON - Premium Visual Element
+   DOCUMENTATION ICON - Premium Visual Element
    ============================================ */
 
-.whitepaper-card {
+.docs-card {
     display: grid;
     grid-template-columns: auto 1fr;
     gap: 3rem;
     align-items: center;
 }
 
-.whitepaper-icon {
+.docs-icon {
     position: relative;
     width: 120px;
     height: 120px;
     display: flex;
     align-items: center;
     justify-content: center;
-    background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%);
+    background: linear-gradient(135deg, rgba(16, 185, 129, 0.1) 0%, rgba(5, 150, 105, 0.1) 100%);
     border-radius: 24px;
-    border: 1px solid rgba(102, 126, 234, 0.2);
-    box-shadow: 0 8px 32px -8px rgba(102, 126, 234, 0.3);
+    border: 1px solid rgba(16, 185, 129, 0.2);
+    box-shadow: 0 8px 32px -8px rgba(16, 185, 129, 0.3);
     transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
 }
 
-.whitepaper-icon::after {
+.docs-icon::after {
     content: '';
     position: absolute;
     top: 50%;
     left: 50%;
     width: 140%;
     height: 140%;
-    background: radial-gradient(circle, rgba(102, 126, 234, 0.2) 0%, transparent 70%);
+    background: radial-gradient(circle, rgba(16, 185, 129, 0.2) 0%, transparent 70%);
     transform: translate(-50%, -50%) scale(0);
     transition: transform 0.6s cubic-bezier(0.23, 1, 0.32, 1);
     pointer-events: none;
     border-radius: 24px;
 }
 
-.whitepaper-card:hover .whitepaper-icon {
-    transform: scale(1.08) rotate(5deg);
-    box-shadow: 0 12px 48px -8px rgba(102, 126, 234, 0.5);
-    border-color: rgba(102, 126, 234, 0.4);
+.docs-card:hover .docs-icon {
+    transform: scale(1.08) rotate(-5deg);
+    box-shadow: 0 12px 48px -8px rgba(16, 185, 129, 0.5);
+    border-color: rgba(16, 185, 129, 0.4);
 }
 
-.whitepaper-card:hover .whitepaper-icon::after {
+.docs-card:hover .docs-icon::after {
     transform: translate(-50%, -50%) scale(1);
 }
 
-.whitepaper-icon img {
+.docs-icon img {
     width: 80px;
     height: 80px;
-    filter: drop-shadow(0 4px 16px rgba(102, 126, 234, 0.3));
+    filter: drop-shadow(0 4px 16px rgba(16, 185, 129, 0.3));
     transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
 }
 
-.whitepaper-card:hover .whitepaper-icon img {
+.docs-card:hover .docs-icon img {
     transform: scale(1.1);
-    filter: drop-shadow(0 8px 24px rgba(102, 126, 234, 0.5));
+    filter: drop-shadow(0 8px 24px rgba(16, 185, 129, 0.5));
+}
+
+/* ============================================
+   WHITEPAPER ICON - Premium Visual Element
+   ============================================ */
+
+.whitepaper-card {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 3rem;
+    align-items: center;
+}
+
+.whitepaper-icon {
+    position: relative;
+    width: 200px;
+    height: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.whitepaper-icon::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 180%;
+    height: 180%;
+    background: radial-gradient(circle, rgba(102, 126, 234, 0.15) 0%, transparent 60%);
+    transform: translate(-50%, -50%);
+    opacity: 0.6;
+    transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+    pointer-events: none;
+    border-radius: 50%;
+}
+
+.whitepaper-card:hover .whitepaper-icon::before {
+    width: 200%;
+    height: 200%;
+    opacity: 1;
+}
+
+.whitepaper-icon img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    filter: drop-shadow(0 8px 32px rgba(102, 126, 234, 0.4));
+    transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+    animation: floatWallet 6s ease-in-out infinite;
+}
+
+@keyframes floatWallet {
+    0%, 100% {
+        transform: translateY(0) rotate(0deg);
+    }
+    25% {
+        transform: translateY(-12px) rotate(-3deg);
+    }
+    50% {
+        transform: translateY(0) rotate(0deg);
+    }
+    75% {
+        transform: translateY(-8px) rotate(3deg);
+    }
+}
+
+.whitepaper-card:hover .whitepaper-icon img {
+    animation-play-state: paused;
+    transform: scale(1.1) rotate(-5deg);
+    filter: drop-shadow(0 16px 48px rgba(102, 126, 234, 0.6));
+}
+
+/* ============================================
+   PERFORMANCE STATS SCROLL - Premium Style
+   ============================================ */
+
+.performance-stats-section {
+    padding: 6rem 0;
+    background: rgba(255, 255, 255, 0.01);
+    border-top: 1px solid rgba(255, 255, 255, 0.04);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+    overflow: hidden;
+}
+
+.stats-scroll-container {
+    margin-top: 4rem;
+    overflow: hidden;
+    position: relative;
+}
+
+/* Fade gradients on edges */
+.stats-scroll-container::before,
+.stats-scroll-container::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 150px;
+    z-index: 2;
+    pointer-events: none;
+}
+
+.stats-scroll-container::before {
+    left: 0;
+    background: linear-gradient(90deg, var(--premium-black, #0B0D17) 0%, transparent 100%);
+}
+
+.stats-scroll-container::after {
+    right: 0;
+    background: linear-gradient(270deg, var(--premium-black, #0B0D17) 0%, transparent 100%);
+}
+
+.stats-scroll-track {
+    display: flex;
+    gap: 2rem;
+    animation: scrollLeft 40s linear infinite;
+    will-change: transform;
+}
+
+.stats-scroll-track:hover {
+    animation-play-state: paused;
+}
+
+@keyframes scrollLeft {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(calc(-280px * 8 - 2rem * 8));
+    }
+}
+
+/* Stat Card */
+.stat-card {
+    min-width: 280px;
+    background: var(--premium-card, #1F2233);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 16px;
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+    position: relative;
+    overflow: hidden;
+}
+
+.stat-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent 0%, rgba(102, 126, 234, 0.5) 50%, transparent 100%);
+    opacity: 0;
+    transition: opacity 0.4s ease;
+}
+
+.stat-card:hover {
+    transform: translateY(-8px);
+    border-color: rgba(102, 126, 234, 0.3);
+    box-shadow: 0 12px 48px -8px rgba(102, 126, 234, 0.4);
+    background: var(--premium-card-hover, #252938);
+}
+
+.stat-card:hover::before {
+    opacity: 1;
+}
+
+/* Stat Card Icon */
+.stat-card-icon {
+    width: 64px;
+    height: 64px;
+    margin-bottom: 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.02);
+    border-radius: 12px;
+    transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.stat-card:hover .stat-card-icon {
+    transform: scale(1.1) rotate(5deg);
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.stat-card-icon svg {
+    width: 48px;
+    height: 48px;
+}
+
+/* Stat Card Value */
+.stat-card-value {
+    font-size: 2.5rem;
+    font-weight: 900;
+    letter-spacing: -0.02em;
+    background: linear-gradient(135deg, #ffffff 0%, #e0e7ff 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 0.5rem;
+    font-variant-numeric: tabular-nums;
+}
+
+/* Stat Card Label */
+.stat-card-label {
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--platinum-blue, #E8EDF4);
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    margin-bottom: 0.5rem;
+}
+
+/* Stat Card Description */
+.stat-card-desc {
+    font-size: 0.875rem;
+    color: var(--steel-blue, #8FA3BF);
+    line-height: 1.5;
+    letter-spacing: 0.02em;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .performance-stats-section {
+        padding: 4rem 0;
+    }
+
+    .stats-scroll-container::before,
+    .stats-scroll-container::after {
+        width: 50px;
+    }
+
+    .stat-card {
+        min-width: 240px;
+        padding: 1.5rem;
+    }
+
+    .stat-card-value {
+        font-size: 2rem;
+    }
+
+    .stat-card-icon {
+        width: 56px;
+        height: 56px;
+    }
+
+    .stat-card-icon svg {
+        width: 40px;
+        height: 40px;
+    }
 }
 
 /* ============================================
@@ -499,22 +755,35 @@
         font-size: 0.875rem;
     }
 
-    /* Whitepaper Icon Mobile */
+    /* Documentation & Whitepaper Icons Mobile */
+    .docs-card,
     .whitepaper-card {
         grid-template-columns: 1fr;
         gap: 2rem;
         text-align: center;
     }
 
-    .whitepaper-icon {
+    .docs-icon {
         width: 100px;
         height: 100px;
         margin: 0 auto;
     }
 
-    .whitepaper-icon img {
+    .docs-icon img {
         width: 64px;
         height: 64px;
+    }
+
+    .whitepaper-icon {
+        width: 150px;
+        height: 150px;
+        margin: 0 auto;
+        order: -1; /* 在移动端，钱包图标显示在上方 */
+    }
+
+    .whitepaper-icon img {
+        width: 100%;
+        height: 100%;
     }
 }
 
@@ -530,6 +799,54 @@
 }
 
 /* ============================================
+   SCROLL-TRIGGERED ANIMATIONS
+   Wall Street Elite Enhancement
+   ============================================ */
+
+/* Fade-in-up animation for cards */
+.animate-fade-in-up {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 0.8s cubic-bezier(0.23, 1, 0.32, 1),
+                transform 0.8s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.animate-fade-in-up.animate-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Section title slide-in animation */
+.animate-slide-in-prep {
+    opacity: 0;
+    transform: translateX(-30px);
+    transition: opacity 1s cubic-bezier(0.23, 1, 0.32, 1),
+                transform 1s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.animate-slide-in-prep.animate-slide-in {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+/* Performance section fade-in */
+.section-fade-in {
+    opacity: 0;
+    transition: opacity 1.2s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.section-fade-in.section-visible {
+    opacity: 1;
+}
+
+/* Enhanced navbar on scroll */
+.navbar-scrolled {
+    background: rgba(11, 13, 23, 0.95) !important;
+    backdrop-filter: blur(20px) saturate(180%);
+    box-shadow: 0 4px 24px -4px rgba(0, 0, 0, 0.6);
+}
+
+/* ============================================
    PERFORMANCE - Hardware Acceleration
    ============================================ */
 
@@ -537,7 +854,9 @@
 .floating-cta-button,
 .feature-card,
 .btn-primary,
-.trust-badge {
-    will-change: transform;
+.trust-badge,
+.animate-fade-in-up,
+.animate-slide-in-prep {
+    will-change: transform, opacity;
     transform: translateZ(0);
 }

@@ -1,0 +1,74 @@
+<svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <!-- Book Cover -->
+    <rect x="12" y="10" width="40" height="44" rx="3" fill="url(#bookGradient)" opacity="0.1"/>
+    <rect x="12" y="10" width="40" height="44" rx="3" stroke="url(#bookStroke)" stroke-width="2"/>
+
+    <!-- Book Spine -->
+    <path d="M12 10C12 8.34315 13.3431 7 15 7H16V57H15C13.3431 57 12 55.6569 12 54V10Z" fill="url(#spineGradient)" opacity="0.2"/>
+    <line x1="16" y1="10" x2="16" y2="54" stroke="url(#bookStroke)" stroke-width="1.5"/>
+
+    <!-- Pages Effect (Multiple Layers) -->
+    <rect x="13" y="11" width="38" height="42" rx="2" fill="none" stroke="url(#pageStroke)" stroke-width="1" opacity="0.3"/>
+    <rect x="14" y="12" width="36" height="40" rx="2" fill="none" stroke="url(#pageStroke)" stroke-width="1" opacity="0.5"/>
+
+    <!-- Bookmark Ribbon -->
+    <path d="M32 10V26L28 23L32 26L36 23L32 26V10" fill="url(#bookmarkGradient)" opacity="0.8"/>
+    <path d="M32 10V26L28 23M32 26L36 23" stroke="url(#bookmarkStroke)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+
+    <!-- Content Lines -->
+    <line x1="22" y1="22" x2="44" y2="22" stroke="url(#contentStroke)" stroke-width="1.5" stroke-linecap="round" opacity="0.6"/>
+    <line x1="22" y1="28" x2="42" y2="28" stroke="url(#contentStroke)" stroke-width="1.5" stroke-linecap="round" opacity="0.5"/>
+    <line x1="22" y1="34" x2="44" y2="34" stroke="url(#contentStroke)" stroke-width="1.5" stroke-linecap="round" opacity="0.4"/>
+    <line x1="22" y1="40" x2="40" y2="40" stroke="url(#contentStroke)" stroke-width="1.5" stroke-linecap="round" opacity="0.3"/>
+
+    <!-- Code Bracket Symbol -->
+    <g opacity="0.7">
+        <path d="M26 44L23 46.5L26 49" stroke="url(#codeStroke)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M38 44L41 46.5L38 49" stroke="url(#codeStroke)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        <line x1="34" y1="43" x2="30" y2="50" stroke="url(#codeStroke)" stroke-width="1.5" stroke-linecap="round"/>
+    </g>
+
+    <!-- Gradients -->
+    <defs>
+        <linearGradient id="bookGradient" x1="12" y1="10" x2="52" y2="54" gradientUnits="userSpaceOnUse">
+            <stop offset="0%" stop-color="#10b981"/>
+            <stop offset="50%" stop-color="#059669"/>
+            <stop offset="100%" stop-color="#047857"/>
+        </linearGradient>
+
+        <linearGradient id="bookStroke" x1="12" y1="10" x2="52" y2="54" gradientUnits="userSpaceOnUse">
+            <stop offset="0%" stop-color="#10b981"/>
+            <stop offset="100%" stop-color="#059669"/>
+        </linearGradient>
+
+        <linearGradient id="spineGradient" x1="12" y1="7" x2="16" y2="57" gradientUnits="userSpaceOnUse">
+            <stop offset="0%" stop-color="#059669"/>
+            <stop offset="100%" stop-color="#047857"/>
+        </linearGradient>
+
+        <linearGradient id="pageStroke" x1="13" y1="11" x2="51" y2="53" gradientUnits="userSpaceOnUse">
+            <stop offset="0%" stop-color="#10b981"/>
+            <stop offset="100%" stop-color="#059669"/>
+        </linearGradient>
+
+        <linearGradient id="bookmarkGradient" x1="28" y1="10" x2="36" y2="26" gradientUnits="userSpaceOnUse">
+            <stop offset="0%" stop-color="#f59e0b"/>
+            <stop offset="100%" stop-color="#d97706"/>
+        </linearGradient>
+
+        <linearGradient id="bookmarkStroke" x1="28" y1="10" x2="36" y2="26" gradientUnits="userSpaceOnUse">
+            <stop offset="0%" stop-color="#f59e0b"/>
+            <stop offset="100%" stop-color="#d97706"/>
+        </linearGradient>
+
+        <linearGradient id="contentStroke" x1="22" y1="22" x2="44" y2="40" gradientUnits="userSpaceOnUse">
+            <stop offset="0%" stop-color="#10b981"/>
+            <stop offset="100%" stop-color="#059669"/>
+        </linearGradient>
+
+        <linearGradient id="codeStroke" x1="23" y1="43" x2="41" y2="50" gradientUnits="userSpaceOnUse">
+            <stop offset="0%" stop-color="#3b82f6"/>
+            <stop offset="100%" stop-color="#2563eb"/>
+        </linearGradient>
+    </defs>
+</svg>

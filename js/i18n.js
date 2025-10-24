@@ -1971,15 +1971,19 @@ function updateWhitepaperLinks(lang) {
 
   const pdfPath = whitepaperPaths[lang] || 'pdf/tos.pdf';
 
-  // Update both whitepaper links
+  // Update all three whitepaper links
   const navLink = document.getElementById('whitepaper-link-nav');
   const sectionLink = document.getElementById('whitepaper-link-section');
+  const footerLink = document.getElementById('whitepaper-link-footer');
 
   if (navLink) {
     navLink.href = pdfPath;
   }
   if (sectionLink) {
     sectionLink.href = pdfPath;
+  }
+  if (footerLink) {
+    footerLink.href = pdfPath;
   }
 }
 

@@ -24,7 +24,7 @@
         nodesPerLayer: 4,
         blueNodeProbability: 0.9,
         scrollSpeed: 0.5,
-        edgeOpacity: 0.15,
+        edgeOpacity: 0.35,
         nodeOpacity: 0.6,
         colors: {
           blue: '#4A90E2',
@@ -201,7 +201,7 @@
 
       this.ctx.strokeStyle = this.config.colors.edge;
       this.ctx.globalAlpha = edgeOpacity;
-      this.ctx.lineWidth = 2;
+      this.ctx.lineWidth = 2.5;
       this.ctx.stroke();
       this.ctx.globalAlpha = 1;
 
@@ -229,7 +229,7 @@
 
       this.ctx.strokeStyle = this.config.colors.edge;
       this.ctx.globalAlpha = opacity;
-      this.ctx.lineWidth = 2;
+      this.ctx.lineWidth = 2.5;
       this.ctx.stroke();
       this.ctx.globalAlpha = 1;
 

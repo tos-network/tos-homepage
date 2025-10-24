@@ -24,16 +24,27 @@
         nodesPerLayer: 4,
         blueNodeProbability: 0.9,
         scrollSpeed: 0.5,
-        edgeOpacity: 0.35,
-        nodeOpacity: 0.6,
+        edgeOpacity: 0.4,
+        nodeOpacity: 0.75,
         colors: {
           blue: '#4A90E2',
+          blueLight: '#60a5fa',
+          blueDark: '#3b82f6',
           red: '#ef4444',
-          edge: '#60a5fa'
-        }
+          redLight: '#f87171',
+          edge: '#60a5fa',
+          edgeGlow: '#93c5fd'
+        },
+        // 3D depth effect
+        depthScale: 0.3,
+        // Particle flow
+        particlesPerEdge: 2,
+        particleSpeed: 0.01
       };
 
       this.offset = 0;
+      this.particles = [];
+      this.time = 0;
       this.init();
     }
 
@@ -102,15 +113,23 @@
         for (let i = 0; i < nodeCount; i++) {
           const y = centerY + (i - nodeCount / 2 + 0.5) * this.config.nodeSpacing;
 
+          // Add slight random vertical offset for more organic feel
+          const yOffset = (Math.random() - 0.5) * 20;
+
+          const isBlue = Math.random() < this.config.blueNodeProbability;
+
           const node = {
             x: x,
-            y: y,
+            y: y + yOffset,
             layer: layer,
             index: i,
-            color: Math.random() < this.config.blueNodeProbability ?
-                   this.config.colors.blue : this.config.colors.red,
+            color: isBlue ? this.config.colors.blue : this.config.colors.red,
+            colorLight: isBlue ? this.config.colors.blueLight : this.config.colors.redLight,
             radius: this.config.nodeRadius,
-            opacity: this.config.nodeOpacity
+            opacity: this.config.nodeOpacity,
+            // 3D depth (z-index simulation)
+            depth: Math.random() * 0.5 + 0.5, // 0.5 to 1.0
+            pulsePhase: Math.random() * Math.PI * 2 // For pulsing animation
           };
 
           layerNodes.push(node);
@@ -132,11 +151,25 @@
             const shuffled = [...prevLayerNodes].sort(() => Math.random() - 0.5);
 
             for (let c = 0; c < connectionCount; c++) {
-              this.edges.push({
+              const edge = {
                 from: shuffled[c],
                 to: node,
-                opacity: this.config.edgeOpacity
-              });
+                opacity: this.config.edgeOpacity,
+                // Average depth for edge rendering order
+                depth: (shuffled[c].depth + node.depth) / 2
+              };
+              this.edges.push(edge);
+
+              // Create particles flowing along this edge
+              for (let p = 0; p < this.config.particlesPerEdge; p++) {
+                this.particles.push({
+                  edge: edge,
+                  progress: Math.random(), // 0 to 1 along the edge
+                  speed: this.config.particleSpeed * (0.8 + Math.random() * 0.4),
+                  size: 2 + Math.random() * 2,
+                  opacity: 0.6 + Math.random() * 0.4
+                });
+              }
             }
           });
         }
@@ -149,17 +182,59 @@
       // Skip if outside viewport (with margin)
       if (x < -100 || x > this.width + 100) return;
 
+      // Calculate depth-based scale and opacity
+      const depthScale = 0.7 + node.depth * 0.3; // 0.7 to 1.0
+      const radius = node.radius * depthScale;
+
+      // Subtle pulse animation
+      const pulse = Math.sin(this.time * 0.002 + node.pulsePhase) * 0.1 + 1;
+      const finalRadius = radius * pulse;
+
+      // Depth-based opacity
+      const depthOpacity = node.opacity * (0.6 + node.depth * 0.4);
+
+      // Draw outer glow (larger, more transparent)
       this.ctx.beginPath();
-      this.ctx.arc(x, node.y, node.radius, 0, Math.PI * 2);
-      this.ctx.fillStyle = node.color;
-      this.ctx.globalAlpha = node.opacity;
+      this.ctx.arc(x, node.y, finalRadius * 2.5, 0, Math.PI * 2);
+      const glowGradient = this.ctx.createRadialGradient(x, node.y, 0, x, node.y, finalRadius * 2.5);
+      glowGradient.addColorStop(0, node.color + '40');
+      glowGradient.addColorStop(0.5, node.color + '10');
+      glowGradient.addColorStop(1, node.color + '00');
+      this.ctx.fillStyle = glowGradient;
+      this.ctx.globalAlpha = depthOpacity * 0.8;
       this.ctx.fill();
 
-      // Add glow effect
-      this.ctx.shadowBlur = 15;
-      this.ctx.shadowColor = node.color;
+      // Draw main node with radial gradient for 3D effect
+      this.ctx.beginPath();
+      this.ctx.arc(x, node.y, finalRadius, 0, Math.PI * 2);
+
+      const gradient = this.ctx.createRadialGradient(
+        x - finalRadius * 0.3,
+        node.y - finalRadius * 0.3,
+        0,
+        x,
+        node.y,
+        finalRadius
+      );
+      gradient.addColorStop(0, node.colorLight);
+      gradient.addColorStop(1, node.color);
+
+      this.ctx.fillStyle = gradient;
+      this.ctx.globalAlpha = depthOpacity;
       this.ctx.fill();
-      this.ctx.shadowBlur = 0;
+
+      // Add subtle border for definition
+      this.ctx.strokeStyle = node.colorLight;
+      this.ctx.lineWidth = 1;
+      this.ctx.globalAlpha = depthOpacity * 0.5;
+      this.ctx.stroke();
+
+      // Inner highlight for extra depth
+      this.ctx.beginPath();
+      this.ctx.arc(x - finalRadius * 0.3, node.y - finalRadius * 0.3, finalRadius * 0.4, 0, Math.PI * 2);
+      this.ctx.fillStyle = '#ffffff';
+      this.ctx.globalAlpha = depthOpacity * 0.4;
+      this.ctx.fill();
 
       this.ctx.globalAlpha = 1;
     }
@@ -173,8 +248,8 @@
         return;
       }
 
-      // Calculate opacity based on position (fade in/out at edges)
-      let edgeOpacity = edge.opacity;
+      // Calculate opacity based on position (fade in/out at edges) and depth
+      let edgeOpacity = edge.opacity * (0.5 + edge.depth * 0.5);
       const fadeZone = 200;
 
       if (fromX < fadeZone) {
@@ -184,35 +259,54 @@
         edgeOpacity *= Math.max(0, (this.width - toX) / fadeZone);
       }
 
+      // More elegant curve with varying control points
+      const controlX1 = fromX + (toX - fromX) * 0.3;
+      const controlY1 = edge.from.y + (edge.to.y - edge.from.y) * 0.1;
+      const controlX2 = fromX + (toX - fromX) * 0.7;
+      const controlY2 = edge.to.y + (edge.from.y - edge.to.y) * 0.1;
+
+      // Draw glow layer first (wider, more transparent)
       this.ctx.beginPath();
       this.ctx.moveTo(fromX, edge.from.y);
+      this.ctx.bezierCurveTo(
+        controlX1, controlY1,
+        controlX2, controlY2,
+        toX, edge.to.y
+      );
+      this.ctx.strokeStyle = this.config.colors.edgeGlow;
+      this.ctx.globalAlpha = edgeOpacity * 0.4;
+      this.ctx.lineWidth = 4;
+      this.ctx.stroke();
 
-      // Bezier curve for smooth connection
-      const controlX1 = fromX + (toX - fromX) * 0.5;
-      const controlY1 = edge.from.y;
-      const controlX2 = fromX + (toX - fromX) * 0.5;
-      const controlY2 = edge.to.y;
-
+      // Draw main edge
+      this.ctx.beginPath();
+      this.ctx.moveTo(fromX, edge.from.y);
       this.ctx.bezierCurveTo(
         controlX1, controlY1,
         controlX2, controlY2,
         toX, edge.to.y
       );
 
-      this.ctx.strokeStyle = this.config.colors.edge;
+      // Create gradient along the edge
+      const gradient = this.ctx.createLinearGradient(fromX, edge.from.y, toX, edge.to.y);
+      gradient.addColorStop(0, this.config.colors.edge + 'cc');
+      gradient.addColorStop(0.5, this.config.colors.edge);
+      gradient.addColorStop(1, this.config.colors.edge + 'cc');
+
+      this.ctx.strokeStyle = gradient;
       this.ctx.globalAlpha = edgeOpacity;
-      this.ctx.lineWidth = 2.5;
+      this.ctx.lineWidth = 2;
       this.ctx.stroke();
       this.ctx.globalAlpha = 1;
 
-      // Draw arrow
-      this.drawArrow(fromX, edge.from.y, toX, edge.to.y, edgeOpacity);
+      // Draw arrow with depth
+      this.drawArrow(fromX, edge.from.y, toX, edge.to.y, edgeOpacity, edge.depth);
     }
 
-    drawArrow(fromX, fromY, toX, toY, opacity) {
+    drawArrow(fromX, fromY, toX, toY, opacity, depth) {
       const angle = Math.atan2(toY - fromY, toX - fromX);
-      const arrowLength = 10;
-      const arrowWidth = 6;
+      const arrowLength = 8;
+      const arrowWidth = 5;
 
       // Position arrow at destination node
       const arrowX = toX - this.config.nodeRadius * Math.cos(angle);
@@ -226,19 +320,77 @@
       this.ctx.moveTo(-arrowLength, -arrowWidth);
       this.ctx.lineTo(0, 0);
       this.ctx.lineTo(-arrowLength, arrowWidth);
+      this.ctx.closePath();
 
-      this.ctx.strokeStyle = this.config.colors.edge;
-      this.ctx.globalAlpha = opacity;
-      this.ctx.lineWidth = 2.5;
+      this.ctx.fillStyle = this.config.colors.edge;
+      this.ctx.globalAlpha = opacity * 0.8;
+      this.ctx.fill();
+
+      this.ctx.strokeStyle = this.config.colors.edgeGlow;
+      this.ctx.lineWidth = 1;
       this.ctx.stroke();
       this.ctx.globalAlpha = 1;
 
       this.ctx.restore();
     }
 
+    drawParticles() {
+      this.particles.forEach(particle => {
+        // Skip if edge is not visible
+        const fromX = particle.edge.from.x + this.offset;
+        const toX = particle.edge.to.x + this.offset;
+
+        if ((fromX < -100 && toX < -100) || (fromX > this.width + 100 && toX > this.width + 100)) {
+          return;
+        }
+
+        // Update particle position
+        particle.progress += particle.speed;
+        if (particle.progress > 1) {
+          particle.progress = 0;
+        }
+
+        // Calculate position along the bezier curve
+        const t = particle.progress;
+        const controlX1 = fromX + (toX - fromX) * 0.3;
+        const controlY1 = particle.edge.from.y + (particle.edge.to.y - particle.edge.from.y) * 0.1;
+        const controlX2 = fromX + (toX - fromX) * 0.7;
+        const controlY2 = particle.edge.to.y + (particle.edge.from.y - particle.edge.to.y) * 0.1;
+
+        // Cubic bezier formula
+        const x = Math.pow(1 - t, 3) * fromX +
+                 3 * Math.pow(1 - t, 2) * t * controlX1 +
+                 3 * (1 - t) * Math.pow(t, 2) * controlX2 +
+                 Math.pow(t, 3) * toX;
+
+        const y = Math.pow(1 - t, 3) * particle.edge.from.y +
+                 3 * Math.pow(1 - t, 2) * t * controlY1 +
+                 3 * (1 - t) * Math.pow(t, 2) * controlY2 +
+                 Math.pow(t, 3) * particle.edge.to.y;
+
+        // Draw particle with glow
+        this.ctx.beginPath();
+        this.ctx.arc(x, y, particle.size * 1.5, 0, Math.PI * 2);
+        this.ctx.fillStyle = this.config.colors.edgeGlow;
+        this.ctx.globalAlpha = particle.opacity * 0.3;
+        this.ctx.fill();
+
+        this.ctx.beginPath();
+        this.ctx.arc(x, y, particle.size, 0, Math.PI * 2);
+        this.ctx.fillStyle = '#ffffff';
+        this.ctx.globalAlpha = particle.opacity;
+        this.ctx.fill();
+
+        this.ctx.globalAlpha = 1;
+      });
+    }
+
     animate() {
       // Clear canvas
       this.ctx.clearRect(0, 0, this.width, this.height);
+
+      // Update time
+      this.time++;
 
       // Update offset (move right)
       this.offset += this.config.scrollSpeed;
@@ -250,11 +402,20 @@
         this.removeOldLayer();
       }
 
-      // Draw edges first (behind nodes)
-      this.edges.forEach(edge => this.drawEdge(edge));
+      // Sort edges by depth (draw far edges first)
+      const sortedEdges = [...this.edges].sort((a, b) => a.depth - b.depth);
 
-      // Draw nodes
-      this.nodes.forEach(node => this.drawNode(node));
+      // Sort nodes by depth (draw far nodes first)
+      const sortedNodes = [...this.nodes].sort((a, b) => a.depth - b.depth);
+
+      // Draw edges first (behind nodes)
+      sortedEdges.forEach(edge => this.drawEdge(edge));
+
+      // Draw particles flowing on edges
+      this.drawParticles();
+
+      // Draw nodes on top
+      sortedNodes.forEach(node => this.drawNode(node));
 
       // Continue animation
       this.animationId = requestAnimationFrame(this.animate.bind(this));
@@ -275,15 +436,22 @@
       for (let i = 0; i < nodeCount; i++) {
         const y = centerY + (i - nodeCount / 2 + 0.5) * this.config.nodeSpacing;
 
+        // Add slight random vertical offset for more organic feel
+        const yOffset = (Math.random() - 0.5) * 20;
+
+        const isBlue = Math.random() < this.config.blueNodeProbability;
+
         const node = {
           x: x,
-          y: y,
+          y: y + yOffset,
           layer: newLayer,
           index: i,
-          color: Math.random() < this.config.blueNodeProbability ?
-                 this.config.colors.blue : this.config.colors.red,
+          color: isBlue ? this.config.colors.blue : this.config.colors.red,
+          colorLight: isBlue ? this.config.colors.blueLight : this.config.colors.redLight,
           radius: this.config.nodeRadius,
-          opacity: this.config.nodeOpacity
+          opacity: this.config.nodeOpacity,
+          depth: Math.random() * 0.5 + 0.5,
+          pulsePhase: Math.random() * Math.PI * 2
         };
 
         newNodes.push(node);
@@ -305,11 +473,24 @@
           const shuffled = [...prevLayerNodes].sort(() => Math.random() - 0.5);
 
           for (let c = 0; c < connectionCount; c++) {
-            this.edges.push({
+            const edge = {
               from: shuffled[c],
               to: node,
-              opacity: this.config.edgeOpacity
-            });
+              opacity: this.config.edgeOpacity,
+              depth: (shuffled[c].depth + node.depth) / 2
+            };
+            this.edges.push(edge);
+
+            // Create particles flowing along this edge
+            for (let p = 0; p < this.config.particlesPerEdge; p++) {
+              this.particles.push({
+                edge: edge,
+                progress: Math.random(),
+                speed: this.config.particleSpeed * (0.8 + Math.random() * 0.4),
+                size: 2 + Math.random() * 2,
+                opacity: 0.6 + Math.random() * 0.4
+              });
+            }
           }
         });
       }
@@ -328,6 +509,11 @@
       if (removedCount > 0) {
         this.edges = this.edges.filter(edge =>
           this.nodes.includes(edge.from) && this.nodes.includes(edge.to)
+        );
+
+        // Filter out particles on removed edges
+        this.particles = this.particles.filter(particle =>
+          this.edges.includes(particle.edge)
         );
 
         // Remove old layers from tracking

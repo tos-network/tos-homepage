@@ -19,10 +19,12 @@
     }
 
     init() {
-      if (!this.languageBtn || !window.i18n) return;
+      if (!this.languageBtn) return;
 
-      // Update active language option
-      this.updateActiveOption(window.i18n.getCurrentLanguage());
+      // Update active language option if i18n is loaded
+      if (window.i18n) {
+        this.updateActiveOption(window.i18n.getCurrentLanguage());
+      }
 
       // Language button click handler
       this.languageBtn.addEventListener('click', (e) => {

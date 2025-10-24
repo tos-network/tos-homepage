@@ -1,0 +1,70 @@
+<svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <!-- Wallet Background -->
+    <rect x="8" y="16" width="48" height="36" rx="6" fill="url(#walletGradient)" opacity="0.1"/>
+    <rect x="8" y="16" width="48" height="36" rx="6" stroke="url(#walletStroke)" stroke-width="2"/>
+
+    <!-- Card Slot -->
+    <rect x="8" y="22" width="48" height="8" fill="url(#slotGradient)" opacity="0.15"/>
+    <line x1="8" y1="22" x2="56" y2="22" stroke="url(#walletStroke)" stroke-width="1.5"/>
+    <line x1="8" y1="30" x2="56" y2="30" stroke="url(#walletStroke)" stroke-width="1.5"/>
+
+    <!-- Card Inside Wallet -->
+    <rect x="14" y="34" width="36" height="12" rx="2" fill="url(#cardGradient)" opacity="0.2"/>
+    <rect x="14" y="34" width="36" height="12" rx="2" stroke="url(#cardStroke)" stroke-width="1.5"/>
+
+    <!-- Coin/Logo Circle -->
+    <circle cx="32" cy="40" r="4" fill="url(#coinGradient)"/>
+    <circle cx="32" cy="40" r="4" stroke="url(#coinStroke)" stroke-width="1"/>
+
+    <!-- 'A' Logo on Coin -->
+    <text x="32" y="43" font-family="Arial, sans-serif" font-size="6" font-weight="bold" fill="#0B0D17" text-anchor="middle">A</text>
+
+    <!-- Chip Decoration -->
+    <rect x="18" y="37" width="6" height="6" rx="1" stroke="url(#chipStroke)" stroke-width="1" fill="none"/>
+    <line x1="19.5" y1="38.5" x2="19.5" y2="41.5" stroke="url(#chipStroke)" stroke-width="0.5"/>
+    <line x1="22.5" y1="38.5" x2="22.5" y2="41.5" stroke="url(#chipStroke)" stroke-width="0.5"/>
+
+    <!-- Gradients -->
+    <defs>
+        <linearGradient id="walletGradient" x1="8" y1="16" x2="56" y2="52" gradientUnits="userSpaceOnUse">
+            <stop offset="0%" stop-color="#667eea"/>
+            <stop offset="50%" stop-color="#764ba2"/>
+            <stop offset="100%" stop-color="#f093fb"/>
+        </linearGradient>
+
+        <linearGradient id="walletStroke" x1="8" y1="16" x2="56" y2="52" gradientUnits="userSpaceOnUse">
+            <stop offset="0%" stop-color="#667eea"/>
+            <stop offset="100%" stop-color="#764ba2"/>
+        </linearGradient>
+
+        <linearGradient id="slotGradient" x1="8" y1="22" x2="56" y2="30" gradientUnits="userSpaceOnUse">
+            <stop offset="0%" stop-color="#667eea"/>
+            <stop offset="100%" stop-color="#764ba2"/>
+        </linearGradient>
+
+        <linearGradient id="cardGradient" x1="14" y1="34" x2="50" y2="46" gradientUnits="userSpaceOnUse">
+            <stop offset="0%" stop-color="#667eea"/>
+            <stop offset="100%" stop-color="#764ba2"/>
+        </linearGradient>
+
+        <linearGradient id="cardStroke" x1="14" y1="34" x2="50" y2="46" gradientUnits="userSpaceOnUse">
+            <stop offset="0%" stop-color="#667eea"/>
+            <stop offset="100%" stop-color="#764ba2"/>
+        </linearGradient>
+
+        <radialGradient id="coinGradient" cx="32" cy="40" r="4" gradientUnits="userSpaceOnUse">
+            <stop offset="0%" stop-color="#FFD89C"/>
+            <stop offset="100%" stop-color="#FFA500"/>
+        </radialGradient>
+
+        <linearGradient id="coinStroke" x1="28" y1="36" x2="36" y2="44" gradientUnits="userSpaceOnUse">
+            <stop offset="0%" stop-color="#FFA500"/>
+            <stop offset="100%" stop-color="#FF8C00"/>
+        </linearGradient>
+
+        <linearGradient id="chipStroke" x1="18" y1="37" x2="24" y2="43" gradientUnits="userSpaceOnUse">
+            <stop offset="0%" stop-color="#8FA3BF"/>
+            <stop offset="100%" stop-color="#667eea"/>
+        </linearGradient>
+    </defs>
+</svg>

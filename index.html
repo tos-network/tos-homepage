@@ -45,6 +45,8 @@
     <link rel="stylesheet" href="css/components.css">
     <link rel="stylesheet" href="css/animations.css">
     <link rel="stylesheet" href="css/dag-animation.css">
+    <link rel="stylesheet" href="css/premium-enhancements.css">
+    <link rel="stylesheet" href="css/elite-enhancements.css">
     <link rel="stylesheet" href="css/responsive.css">
 </head>
 <body>
@@ -70,8 +72,22 @@
                     <li class="navbar-item has-dropdown">
                         <a href="#" class="navbar-link">
                             <svg class="nav-icon" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M8 1L3 6H6V11H10V6H13L8 1Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                                <path d="M2 14H14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                                <defs>
+                                    <linearGradient id="rocketGradient" x1="8" y1="1" x2="8" y2="15" gradientUnits="userSpaceOnUse">
+                                        <stop offset="0%" stop-color="#f59e0b"/>
+                                        <stop offset="100%" stop-color="#ef4444"/>
+                                    </linearGradient>
+                                </defs>
+                                <!-- Rocket body -->
+                                <path d="M8 2L5 8V12C5 12 6 13 8 13C10 13 11 12 11 12V8L8 2Z" stroke="url(#rocketGradient)" stroke-width="1.5" stroke-linejoin="round"/>
+                                <!-- Rocket window -->
+                                <circle cx="8" cy="6" r="1.2" fill="url(#rocketGradient)" fill-opacity="0.6"/>
+                                <!-- Left fin -->
+                                <path d="M5 9L3 11V12L5 11V9Z" stroke="url(#rocketGradient)" stroke-width="1.2" stroke-linejoin="round"/>
+                                <!-- Right fin -->
+                                <path d="M11 9L13 11V12L11 11V9Z" stroke="url(#rocketGradient)" stroke-width="1.2" stroke-linejoin="round"/>
+                                <!-- Flame -->
+                                <path d="M6.5 13C6.5 13 7 14.5 8 14.5C9 14.5 9.5 13 9.5 13" stroke="url(#rocketGradient)" stroke-width="1.2" stroke-linecap="round"/>
                             </svg>
                             <span data-i18n="nav.getStarted">Get Started</span>
                         </a>
@@ -79,8 +95,20 @@
                             <li>
                                 <a href="https://docs.tos.network/resources/tokenomics" class="dropdown-link">
                                     <svg class="dropdown-icon" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <circle cx="8" cy="8" r="6" stroke="currentColor" stroke-width="1.5"/>
-                                        <path d="M8 5V8L10 10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                                        <defs>
+                                            <linearGradient id="getTOSGradient" x1="2" y1="2" x2="14" y2="14" gradientUnits="userSpaceOnUse">
+                                                <stop offset="0%" stop-color="#fbbf24"/>
+                                                <stop offset="100%" stop-color="#f59e0b"/>
+                                            </linearGradient>
+                                        </defs>
+                                        <!-- Wallet body -->
+                                        <rect x="2" y="4" width="12" height="9" rx="1.5" stroke="url(#getTOSGradient)" stroke-width="1.5"/>
+                                        <!-- Wallet flap -->
+                                        <path d="M2 6.5C2 5.67157 2.67157 5 3.5 5H12.5C13.3284 5 14 5.67157 14 6.5V7H2V6.5Z" fill="url(#getTOSGradient)" fill-opacity="0.2"/>
+                                        <!-- Card slot -->
+                                        <rect x="4" y="8" width="8" height="3" rx="0.5" stroke="url(#getTOSGradient)" stroke-width="1.2"/>
+                                        <!-- Coin symbol -->
+                                        <circle cx="8" cy="9.5" r="1" fill="url(#getTOSGradient)"/>
                                     </svg>
                                     <span data-i18n="nav.getTOS">Get TOS</span>
                                 </a>
@@ -88,8 +116,24 @@
                             <li>
                                 <a href="https://docs.tos.network/features/mining/ai-mining" class="dropdown-link">
                                     <svg class="dropdown-icon" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M3 8L6 11L13 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                                        <circle cx="8" cy="8" r="6.5" stroke="currentColor" stroke-width="1.5"/>
+                                        <defs>
+                                            <linearGradient id="miningGradient" x1="3" y1="2" x2="13" y2="14" gradientUnits="userSpaceOnUse">
+                                                <stop offset="0%" stop-color="#22c55e"/>
+                                                <stop offset="100%" stop-color="#16a34a"/>
+                                            </linearGradient>
+                                        </defs>
+                                        <!-- Robot head -->
+                                        <rect x="4" y="5" width="8" height="7" rx="1.5" stroke="url(#miningGradient)" stroke-width="1.5"/>
+                                        <!-- Antenna -->
+                                        <line x1="8" y1="3" x2="8" y2="5" stroke="url(#miningGradient)" stroke-width="1.5" stroke-linecap="round"/>
+                                        <circle cx="8" cy="2.5" r="0.8" fill="url(#miningGradient)"/>
+                                        <!-- Eyes -->
+                                        <circle cx="6" cy="8" r="0.8" fill="url(#miningGradient)"/>
+                                        <circle cx="10" cy="8" r="0.8" fill="url(#miningGradient)"/>
+                                        <!-- Mouth/panel -->
+                                        <rect x="6" y="10" width="4" height="1" rx="0.5" fill="url(#miningGradient)" fill-opacity="0.6"/>
+                                        <!-- Body connector -->
+                                        <line x1="8" y1="12" x2="8" y2="13.5" stroke="url(#miningGradient)" stroke-width="1.2" stroke-linecap="round"/>
                                     </svg>
                                     <span data-i18n="nav.startMining">Start AI-Mining</span>
                                 </a>
@@ -97,8 +141,22 @@
                             <li>
                                 <a href="https://docs.tos.network/tutorials/smart-contract-tutorial" class="dropdown-link">
                                     <svg class="dropdown-icon" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <rect x="2" y="2" width="12" height="12" rx="2" stroke="currentColor" stroke-width="1.5"/>
-                                        <path d="M5 6H11M5 9H9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                                        <defs>
+                                            <linearGradient id="buildGradient" x1="2" y1="1" x2="14" y2="15" gradientUnits="userSpaceOnUse">
+                                                <stop offset="0%" stop-color="#ef4444"/>
+                                                <stop offset="100%" stop-color="#dc2626"/>
+                                            </linearGradient>
+                                        </defs>
+                                        <!-- Spartan helmet top -->
+                                        <path d="M8 2C6 2 4 3 3 5V8C3 8 3 10 4 11L8 14L12 11C13 10 13 8 13 8V5C12 3 10 2 8 2Z" stroke="url(#buildGradient)" stroke-width="1.5" stroke-linejoin="round"/>
+                                        <!-- Helmet crest -->
+                                        <path d="M8 2V4.5" stroke="url(#buildGradient)" stroke-width="1.5" stroke-linecap="round"/>
+                                        <path d="M7 3L8 2L9 3" stroke="url(#buildGradient)" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+                                        <!-- Face opening -->
+                                        <ellipse cx="8" cy="7.5" rx="2.5" ry="3" stroke="url(#buildGradient)" stroke-width="1.2"/>
+                                        <!-- Cheek guards -->
+                                        <path d="M3 8C3 8 3.5 9 4 9.5" stroke="url(#buildGradient)" stroke-width="1.2" stroke-linecap="round"/>
+                                        <path d="M13 8C13 8 12.5 9 12 9.5" stroke="url(#buildGradient)" stroke-width="1.2" stroke-linecap="round"/>
                                     </svg>
                                     <span data-i18n="nav.buildOnTOS">Build on TOS</span>
                                 </a>
@@ -108,8 +166,20 @@
                     <li class="navbar-item has-dropdown">
                         <a href="#" class="navbar-link">
                             <svg class="nav-icon" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M8 14C11.3137 14 14 11.3137 14 8C14 4.68629 11.3137 2 8 2C4.68629 2 2 4.68629 2 8C2 11.3137 4.68629 14 8 14Z" stroke="currentColor" stroke-width="1.5"/>
-                                <path d="M8 5V8H11" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                                <defs>
+                                    <linearGradient id="learnGradient" x1="2" y1="2" x2="14" y2="14" gradientUnits="userSpaceOnUse">
+                                        <stop offset="0%" stop-color="#06b6d4"/>
+                                        <stop offset="100%" stop-color="#0891b2"/>
+                                    </linearGradient>
+                                </defs>
+                                <!-- Book cover -->
+                                <path d="M3 2H11C11.5523 2 12 2.44772 12 3V13C12 13.5523 11.5523 14 11 14H3V2Z" stroke="url(#learnGradient)" stroke-width="1.5" stroke-linejoin="round"/>
+                                <!-- Book spine -->
+                                <path d="M3 2V14" stroke="url(#learnGradient)" stroke-width="1.5"/>
+                                <!-- Pages -->
+                                <path d="M12 3H13C13.5523 3 14 3.44772 14 4V12C14 12.5523 13.5523 13 13 13H12" stroke="url(#learnGradient)" stroke-width="1.5" stroke-linejoin="round"/>
+                                <!-- Bookmark -->
+                                <path d="M9 2V7L7.5 6L6 7V2" stroke="url(#learnGradient)" stroke-width="1.2" stroke-linejoin="round"/>
                             </svg>
                             <span data-i18n="nav.learnMore">Learn More</span>
                         </a>
@@ -117,8 +187,14 @@
                             <li>
                                 <a href="https://github.com/tos-network" class="dropdown-link" target="_blank" rel="noopener">
                                     <svg class="dropdown-icon" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M3 6L8 2L13 6V12C13 12.5523 12.5523 13 12 13H4C3.44772 13 3 12.5523 3 12V6Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                                        <path d="M6 13V9H10V13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                        <defs>
+                                            <linearGradient id="resourcesGradient" x1="3" y1="2" x2="13" y2="13" gradientUnits="userSpaceOnUse">
+                                                <stop offset="0%" stop-color="#10b981"/>
+                                                <stop offset="100%" stop-color="#059669"/>
+                                            </linearGradient>
+                                        </defs>
+                                        <path d="M3 6L8 2L13 6V12C13 12.5523 12.5523 13 12 13H4C3.44772 13 3 12.5523 3 12V6Z" stroke="url(#resourcesGradient)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                        <path d="M6 13V9H10V13" stroke="url(#resourcesGradient)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                                     </svg>
                                     <span data-i18n="nav.resources">Resources</span>
                                 </a>
@@ -126,9 +202,15 @@
                             <li>
                                 <a href="https://github.com/tos-network" class="dropdown-link" target="_blank" rel="noopener">
                                     <svg class="dropdown-icon" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <rect x="2" y="4" width="12" height="9" rx="1" stroke="currentColor" stroke-width="1.5"/>
-                                        <path d="M5 7H11M5 10H9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
-                                        <path d="M6 4V3C6 2.44772 6.44772 2 7 2H9C9.55228 2 10 2.44772 10 3V4" stroke="currentColor" stroke-width="1.5"/>
+                                        <defs>
+                                            <linearGradient id="devtoolsGradient" x1="2" y1="2" x2="14" y2="13" gradientUnits="userSpaceOnUse">
+                                                <stop offset="0%" stop-color="#f59e0b"/>
+                                                <stop offset="100%" stop-color="#d97706"/>
+                                            </linearGradient>
+                                        </defs>
+                                        <rect x="2" y="4" width="12" height="9" rx="1" stroke="url(#devtoolsGradient)" stroke-width="1.5"/>
+                                        <path d="M5 7H11M5 10H9" stroke="url(#devtoolsGradient)" stroke-width="1.5" stroke-linecap="round"/>
+                                        <path d="M6 4V3C6 2.44772 6.44772 2 7 2H9C9.55228 2 10 2.44772 10 3V4" stroke="url(#devtoolsGradient)" stroke-width="1.5"/>
                                     </svg>
                                     <span data-i18n="nav.devTools">Developer Tools</span>
                                 </a>
@@ -136,8 +218,14 @@
                             <li>
                                 <a href="https://docs.tos.network" class="dropdown-link" target="_blank" rel="noopener">
                                     <svg class="dropdown-icon" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M4 2H12C12.5523 2 13 2.44772 13 3V13C13 13.5523 12.5523 14 12 14H4C3.44772 14 3 13.5523 3 13V3C3 2.44772 3.44772 2 4 2Z" stroke="currentColor" stroke-width="1.5"/>
-                                        <path d="M6 6H10M6 9H10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                                        <defs>
+                                            <linearGradient id="docsGradient" x1="3" y1="2" x2="13" y2="14" gradientUnits="userSpaceOnUse">
+                                                <stop offset="0%" stop-color="#3b82f6"/>
+                                                <stop offset="100%" stop-color="#2563eb"/>
+                                            </linearGradient>
+                                        </defs>
+                                        <path d="M4 2H12C12.5523 2 13 2.44772 13 3V13C13 13.5523 12.5523 14 12 14H4C3.44772 14 3 13.5523 3 13V3C3 2.44772 3.44772 2 4 2Z" stroke="url(#docsGradient)" stroke-width="1.5"/>
+                                        <path d="M6 6H10M6 9H10" stroke="url(#docsGradient)" stroke-width="1.5" stroke-linecap="round"/>
                                     </svg>
                                     <span data-i18n="nav.documentation">Documentation</span>
                                 </a>
@@ -145,8 +233,14 @@
                             <li>
                                 <a href="pdf/tos.pdf" id="whitepaper-link-nav" class="dropdown-link" target="_blank" rel="noopener">
                                     <svg class="dropdown-icon" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M9 2H4C3.44772 2 3 2.44772 3 3V13C3 13.5523 3.44772 14 4 14H12C12.5523 14 13 13.5523 13 13V6L9 2Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                                        <path d="M9 2V6H13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                        <defs>
+                                            <linearGradient id="whitepaperGradient" x1="3" y1="2" x2="13" y2="14" gradientUnits="userSpaceOnUse">
+                                                <stop offset="0%" stop-color="#8b5cf6"/>
+                                                <stop offset="100%" stop-color="#7c3aed"/>
+                                            </linearGradient>
+                                        </defs>
+                                        <path d="M9 2H4C3.44772 2 3 2.44772 3 3V13C3 13.5523 3.44772 14 4 14H12C12.5523 14 13 13.5523 13 13V6L9 2Z" stroke="url(#whitepaperGradient)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                        <path d="M9 2V6H13" stroke="url(#whitepaperGradient)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                                     </svg>
                                     <span data-i18n="nav.whitepaper">Whitepaper</span>
                                 </a>
@@ -156,9 +250,22 @@
                     <li class="navbar-item has-dropdown">
                         <a href="#" class="navbar-link">
                             <svg class="nav-icon" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <circle cx="5" cy="5" r="2.5" stroke="currentColor" stroke-width="1.5"/>
-                                <circle cx="11" cy="11" r="2.5" stroke="currentColor" stroke-width="1.5"/>
-                                <path d="M7 6.5L9.5 9.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                                <defs>
+                                    <linearGradient id="connectGradient" x1="2" y1="2" x2="14" y2="14" gradientUnits="userSpaceOnUse">
+                                        <stop offset="0%" stop-color="#8b5cf6"/>
+                                        <stop offset="100%" stop-color="#6366f1"/>
+                                    </linearGradient>
+                                </defs>
+                                <!-- Network nodes -->
+                                <circle cx="8" cy="3" r="1.8" stroke="url(#connectGradient)" stroke-width="1.5" fill="url(#connectGradient)" fill-opacity="0.2"/>
+                                <circle cx="3" cy="8" r="1.8" stroke="url(#connectGradient)" stroke-width="1.5" fill="url(#connectGradient)" fill-opacity="0.2"/>
+                                <circle cx="13" cy="8" r="1.8" stroke="url(#connectGradient)" stroke-width="1.5" fill="url(#connectGradient)" fill-opacity="0.2"/>
+                                <circle cx="8" cy="13" r="1.8" stroke="url(#connectGradient)" stroke-width="1.5" fill="url(#connectGradient)" fill-opacity="0.2"/>
+                                <!-- Connection lines -->
+                                <line x1="8" y1="4.8" x2="8" y2="11.2" stroke="url(#connectGradient)" stroke-width="1.5"/>
+                                <line x1="4.8" y1="8" x2="11.2" y2="8" stroke="url(#connectGradient)" stroke-width="1.5"/>
+                                <line x1="6.5" y1="4.5" x2="4.5" y2="6.5" stroke="url(#connectGradient)" stroke-width="1.5"/>
+                                <line x1="9.5" y1="4.5" x2="11.5" y2="6.5" stroke="url(#connectGradient)" stroke-width="1.5"/>
                             </svg>
                             <span data-i18n="nav.connect">Connect</span>
                         </a>
@@ -166,7 +273,13 @@
                             <li>
                                 <a href="https://t.me/tos_network" class="dropdown-link" target="_blank" rel="noopener">
                                     <svg class="dropdown-icon" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M14 2L7 9M14 2L10 14L7 9M14 2L2 6L7 9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                        <defs>
+                                            <linearGradient id="telegramGradient" x1="2" y1="2" x2="14" y2="14" gradientUnits="userSpaceOnUse">
+                                                <stop offset="0%" stop-color="#2aabee"/>
+                                                <stop offset="100%" stop-color="#229ed9"/>
+                                            </linearGradient>
+                                        </defs>
+                                        <path d="M14 2L7 9M14 2L10 14L7 9M14 2L2 6L7 9" stroke="url(#telegramGradient)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                                     </svg>
                                     <span data-i18n="nav.telegram">Telegram</span>
                                 </a>
@@ -174,7 +287,13 @@
                             <li>
                                 <a href="https://twitter.com/tos_network" class="dropdown-link" target="_blank" rel="noopener">
                                     <svg class="dropdown-icon" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M13 3C12.5 3.5 11.9 3.9 11.2 4.1C10.8 3.6 10.1 3.2 9.3 3.2C7.8 3.2 6.6 4.5 6.6 6C6.6 6.2 6.6 6.4 6.7 6.6C4.5 6.5 2.6 5.4 1.4 3.7C1.2 4.1 1 4.5 1 5C1 5.8 1.4 6.5 2 7C1.6 7 1.3 6.9 1 6.7C1 8 2 9.1 3.2 9.4C3 9.5 2.7 9.5 2.4 9.5C2.2 9.5 2.1 9.5 1.9 9.4C2.2 10.5 3.3 11.3 4.6 11.3C3.6 12 2.3 12.5 1 12.5H0.5C1.8 13.3 3.3 13.8 5 13.8C9.3 13.8 11.6 9.5 11.6 6.3V5.9C12.1 5.5 12.6 5.1 13 4.6V3Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                        <defs>
+                                            <linearGradient id="twitterGradient" x1="0.5" y1="3" x2="13" y2="13.8" gradientUnits="userSpaceOnUse">
+                                                <stop offset="0%" stop-color="#1d9bf0"/>
+                                                <stop offset="100%" stop-color="#0c7abf"/>
+                                            </linearGradient>
+                                        </defs>
+                                        <path d="M13 3C12.5 3.5 11.9 3.9 11.2 4.1C10.8 3.6 10.1 3.2 9.3 3.2C7.8 3.2 6.6 4.5 6.6 6C6.6 6.2 6.6 6.4 6.7 6.6C4.5 6.5 2.6 5.4 1.4 3.7C1.2 4.1 1 4.5 1 5C1 5.8 1.4 6.5 2 7C1.6 7 1.3 6.9 1 6.7C1 8 2 9.1 3.2 9.4C3 9.5 2.7 9.5 2.4 9.5C2.2 9.5 2.1 9.5 1.9 9.4C2.2 10.5 3.3 11.3 4.6 11.3C3.6 12 2.3 12.5 1 12.5H0.5C1.8 13.3 3.3 13.8 5 13.8C9.3 13.8 11.6 9.5 11.6 6.3V5.9C12.1 5.5 12.6 5.1 13 4.6V3Z" stroke="url(#twitterGradient)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                                     </svg>
                                     <span data-i18n="nav.twitter">Twitter</span>
                                 </a>
@@ -452,6 +571,9 @@
     <section class="whitepaper-section" id="whitepaper">
         <div class="container">
             <div class="whitepaper-card">
+                <div class="whitepaper-icon">
+                    <img src="img/features/wallet.svg" alt="TOS Wallet Icon">
+                </div>
                 <div class="whitepaper-content">
                     <h2 class="whitepaper-title" data-i18n="whitepaper.title">Whitepaper</h2>
                     <p class="whitepaper-description" data-i18n="whitepaper.desc">

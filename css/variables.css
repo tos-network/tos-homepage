@@ -1,16 +1,16 @@
 /* ============================================
    TOS Network - CSS Variables
-   Bitfinex-inspired dark theme design system
+   Modern dark theme design system
    ============================================ */
 
 :root {
   /* ============ Color System ============ */
 
-  /* Bitfinex Color System */
-  --bitfinex-bg: #07020f;          /* Deep purple-black */
-  --bitfinex-surface: #0d1d29;     /* Dark blue-gray */
-  --bitfinex-red: #e44b44;         /* Accent red */
-  --bitfinex-green: #03ca9b;       /* Brand green */
+  /* Base Color System */
+  --base-bg: #07020f;          /* Deep purple-black */
+  --base-surface: #0d1d29;     /* Dark blue-gray */
+  --base-red: #e44b44;         /* Accent red */
+  --base-green: #03ca9b;       /* Brand green */
 
   /* Primary Brand Colors - TOS Blue */
   --primary-blue: #4A90E2;
@@ -56,7 +56,7 @@
 
   /* ============ Gradients ============ */
 
-  /* Primary Background Gradient - Exact Bitfinex Style */
+  /* Primary Background Gradient */
   --bg-gradient-primary:
     linear-gradient(45deg, #e44b44 -50%, rgba(7, 2, 15, 0) 20%),
     linear-gradient(135deg, #03ca9b -50%, rgba(7, 2, 15, 0) 20%),

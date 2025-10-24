@@ -33,7 +33,7 @@ body {
   position: relative;
 }
 
-/* Bitfinex-style gradient background */
+/* Modern gradient background */
 body::before {
   content: '';
   position: fixed;

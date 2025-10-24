@@ -570,7 +570,7 @@
   margin-top: var(--spacing-2xl);
 }
 
-/* Bitfinex-style floating copyright section with gradient border */
+/* Floating copyright section with gradient border */
 .footer-copyright {
   position: relative;
   display: inline-block;

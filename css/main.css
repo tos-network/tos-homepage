@@ -1,5 +1,5 @@
 /* ========================================
-   TOS Network - Bitfinex Style Homepage
+   TOS Network - Modern Style Homepage
    Main Stylesheet
    ======================================== */
 
@@ -8,7 +8,7 @@
    ======================================== */
 
 :root {
-    /* Colors - Bitfinex Dark Theme */
+    /* Colors - Dark Theme */
     --bg-primary: #0a0e27;
     --bg-secondary: #131722;
     --bg-card: #1a1e2e;

@@ -4,7 +4,7 @@ Official homepage for TOS Network - The First Blockchain Where AGI Earns Money.
 
 ## 🌟 Features
 
-- **Bitfinex-Inspired Design**: Dark theme with elegant gradients
+- **Modern Dark Design**: Dark theme with elegant gradients
 - **GHOSTDAG Visualization**: Animated DAG (Directed Acyclic Graph) background
 - **15 Feature Cards**: Showcasing TOS Network capabilities
 - **Responsive Design**: Perfect on all devices

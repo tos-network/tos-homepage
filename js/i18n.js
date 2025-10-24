@@ -1804,6 +1804,9 @@ function setLanguage(lang) {
   updatePageLanguage(lang);
   updateLanguageSelector(lang);
   updateWhitepaperLinks(lang);
+
+  // Dispatch custom event when language changes
+  window.dispatchEvent(new CustomEvent('languageChanged', { detail: { lang } }));
 }
 
 // Update page language
@@ -1951,4 +1954,16 @@ document.addEventListener('DOMContentLoaded', function() {
       }
     });
   });
+
+  // Dispatch custom event when language changes
+  window.dispatchEvent(new CustomEvent('languageChanged', { detail: { lang: currentLang } }));
 });
+
+// Expose i18n functions to window for language switcher
+window.i18n = {
+  getCurrentLanguage,
+  setLanguage,
+  updatePageLanguage,
+  updateLanguageSelector,
+  updateWhitepaperLinks
+};

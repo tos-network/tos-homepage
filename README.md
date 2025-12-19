@@ -5,7 +5,7 @@ Official homepage for TOS Network - The First Blockchain Where AGI Earns Money.
 ## 🌟 Features
 
 - **Modern Dark Design**: Dark theme with elegant gradients
-- **GHOSTDAG Visualization**: Animated DAG (Directed Acyclic Graph) background
+- **BlockDAG Visualization**: Animated DAG (Directed Acyclic Graph) background
 - **21 Feature Cards**: Showcasing TOS Network capabilities ⭐ (updated from 15)
   - 3 AGI Economic Features (DID, AGIW, Credits)
   - 12 Technical Features (ZK Privacy, Cryptography, Parallel Execution, Security, Encrypted Network, etc.)

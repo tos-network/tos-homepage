@@ -1,5 +1,5 @@
 /**
- * TOS Network - GHOSTDAG Animation
+ * TOS Network - BlockDAG Animation
  * Dynamic DAG (Directed Acyclic Graph) visualization
  */
 

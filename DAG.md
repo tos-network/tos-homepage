@@ -1,8 +1,8 @@
-# TOS Network - GHOSTDAG Animation Documentation
+# TOS Network - BlockDAG Animation Documentation
 
 ## Overview
 
-The TOS Network homepage features a sophisticated, real-time GHOSTDAG (Directed Acyclic Graph) animation that visualizes the core blockchain architecture. Inspired by modern high-quality financial platforms, this animation provides an elegant, 3D visualization with smooth flowing curves and dynamic particle effects.
+The TOS Network homepage features a sophisticated, real-time BlockDAG (Directed Acyclic Graph) animation that visualizes the core blockchain architecture. Inspired by modern high-quality financial platforms, this animation provides an elegant, 3D visualization with smooth flowing curves and dynamic particle effects.
 
 ## 🎨 Animation Enhancement Features
 
@@ -283,7 +283,7 @@ showParticleCount: true
 
 Inspired by:
 - Modern fintech platform design principles
-- GHOSTDAG consensus protocol visualization
+- BlockDAG consensus protocol visualization
 - Contemporary UI/UX design patterns
 
 Developed with attention to:

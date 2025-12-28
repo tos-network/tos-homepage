@@ -1,0 +1,28 @@
+<svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="qrGradient" x1="4" y1="4" x2="44" y2="44" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#f59e0b"/>
+      <stop offset="100%" stop-color="#d97706"/>
+    </linearGradient>
+  </defs>
+  <!-- QR code frame -->
+  <rect x="6" y="6" width="36" height="36" rx="4" stroke="url(#qrGradient)" stroke-width="2" fill="none"/>
+  <!-- Top-left corner pattern -->
+  <rect x="10" y="10" width="10" height="10" stroke="url(#qrGradient)" stroke-width="2" fill="none"/>
+  <rect x="13" y="13" width="4" height="4" fill="url(#qrGradient)"/>
+  <!-- Top-right corner pattern -->
+  <rect x="28" y="10" width="10" height="10" stroke="url(#qrGradient)" stroke-width="2" fill="none"/>
+  <rect x="31" y="13" width="4" height="4" fill="url(#qrGradient)"/>
+  <!-- Bottom-left corner pattern -->
+  <rect x="10" y="28" width="10" height="10" stroke="url(#qrGradient)" stroke-width="2" fill="none"/>
+  <rect x="13" y="31" width="4" height="4" fill="url(#qrGradient)"/>
+  <!-- Data dots -->
+  <rect x="24" y="24" width="3" height="3" fill="url(#qrGradient)"/>
+  <rect x="28" y="24" width="3" height="3" fill="url(#qrGradient)"/>
+  <rect x="32" y="24" width="3" height="3" fill="url(#qrGradient)"/>
+  <rect x="24" y="28" width="3" height="3" fill="url(#qrGradient)"/>
+  <rect x="32" y="28" width="3" height="3" fill="url(#qrGradient)"/>
+  <rect x="28" y="32" width="3" height="3" fill="url(#qrGradient)"/>
+  <rect x="32" y="32" width="3" height="3" fill="url(#qrGradient)"/>
+  <rect x="24" y="32" width="3" height="3" fill="url(#qrGradient)"/>
+</svg>

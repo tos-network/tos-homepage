@@ -1,0 +1,16 @@
+<svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="kycGradient" x1="4" y1="4" x2="44" y2="44" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#10b981"/>
+      <stop offset="100%" stop-color="#059669"/>
+    </linearGradient>
+  </defs>
+  <!-- Shield outline -->
+  <path d="M24 6L40 12V22C40 32 33 40 24 44C15 40 8 32 8 22V12L24 6Z" stroke="url(#kycGradient)" stroke-width="2" fill="none"/>
+  <!-- Person icon -->
+  <circle cx="24" cy="18" r="5" stroke="url(#kycGradient)" stroke-width="2" fill="none"/>
+  <path d="M16 32C16 28 19.5 25 24 25C28.5 25 32 28 32 32" stroke="url(#kycGradient)" stroke-width="2" stroke-linecap="round" fill="none"/>
+  <!-- Checkmark -->
+  <circle cx="34" cy="34" r="6" fill="#10b981"/>
+  <path d="M31 34L33 36L37 32" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>

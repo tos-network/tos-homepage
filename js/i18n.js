@@ -100,6 +100,10 @@ const translations = {
     'features.nftsupport.desc': 'Batch mint, one-click transfer, automatic royalty enforcement. From game items to membership rights, from art collections to event tickets—ultra-low cost, unlimited possibilities.',
     'features.unoprivacy.title': 'UNO Privacy Transfer',
     'features.unoprivacy.desc': 'Your wealth, only you know. Hidden amounts, encrypted recipients—how much and to whom, all your secret. Betting without copycats, large transfers without tracking, payroll with privacy. Spend freely, no one watching.',
+    'features.encryptedmempool.title': 'Encrypted Mempool',
+    'features.encryptedmempool.desc': 'Your transactions stay secret until confirmed. Encrypted in mempool, revealed only at block production—zero frontrunning, zero sandwich attacks. The ultimate stealth mode for DeFi traders.',
+    'features.prioritynode.title': 'Enterprise Node Trust',
+    'features.prioritynode.desc': 'Build your trusted validator network. Sync only from verified nodes, reject untrusted chains. Enterprise-grade security for institutions, exchanges, and infrastructure operators.',
 
     'features.coreTitle': 'Built for the AGI Era',
     'features.coreSubtitle': 'From general computation to general economic agency. The complete infrastructure for autonomous agents to earn, settle, and govern.',
@@ -276,6 +280,10 @@ const translations = {
     'features.nftsupport.desc': '批量铸造、一键转移、版税自动执行。从游戏道具到会员权益，从艺术收藏到活动门票——极低成本，无限可能。',
     'features.unoprivacy.title': 'UNO 隐私转账',
     'features.unoprivacy.desc': '你的财富，只有你知道。金额隐藏、接收者加密——花多少、给谁，都是你的秘密。博彩下注防跟单，大额转账防追踪，工资发放护隐私。自由花钱，无人窥探。',
+    'features.encryptedmempool.title': '加密内存池',
+    'features.encryptedmempool.desc': '你的交易在确认前始终保密。内存池中加密，出块时才解密——零抢跑、零夹子攻击。DeFi 交易者的终极隐身模式。',
+    'features.prioritynode.title': '企业级节点信任',
+    'features.prioritynode.desc': '构建你的可信验证节点网络。仅从受信节点同步，拒绝不可信链。为机构、交易所和基础设施运营商提供企业级安全保障。',
 
     'features.coreTitle': '为 AGI 时代而构建',
     'features.coreSubtitle': '从通用计算到通用经济代理。为自主代理提供赚取、结算和治理的完整基础设施。',
@@ -452,6 +460,10 @@ const translations = {
     'features.nftsupport.desc': '一括ミント、ワンクリック転送、ロイヤリティ自動執行。ゲームアイテムから会員権、アートコレクションからイベントチケットまで——超低コストで無限の可能性。',
     'features.unoprivacy.title': 'UNOプライバシー送金',
     'features.unoprivacy.desc': 'あなたの資産は、あなただけが知っている。金額を隠し、受取人を暗号化——いくら、誰に、すべてあなたの秘密。コピー取引を防ぎ、大口送金を追跡から守り、給与のプライバシーを保護。自由にお金を使い、誰にも見られない。',
+    'features.encryptedmempool.title': '暗号化メンプール',
+    'features.encryptedmempool.desc': 'あなたの取引は確認されるまで秘密のまま。メンプールで暗号化され、ブロック生成時にのみ公開——フロントランニングゼロ、サンドイッチ攻撃ゼロ。DeFiトレーダーの究極のステルスモード。',
+    'features.prioritynode.title': 'エンタープライズノード信頼',
+    'features.prioritynode.desc': '信頼できるバリデーターネットワークを構築。検証済みノードからのみ同期し、信頼できないチェーンを拒否。機関、取引所、インフラオペレーター向けのエンタープライズグレードセキュリティ。',
 
     'features.coreTitle': 'AGI時代のために構築',
     'features.coreSubtitle': '一般的な計算から一般的な経済的エージェンシーへ。自律エージェントが稼ぎ、決済し、統治するための完全なインフラストラクチャ。',
@@ -628,6 +640,10 @@ const translations = {
     'features.nftsupport.desc': '일괄 민팅, 원클릭 전송, 로열티 자동 집행. 게임 아이템에서 멤버십 권리까지, 아트 컬렉션에서 이벤트 티켓까지——초저비용으로 무한한 가능성.',
     'features.unoprivacy.title': 'UNO 프라이버시 전송',
     'features.unoprivacy.desc': '당신의 자산은 당신만이 압니다. 금액 숨김, 수신자 암호화——얼마를, 누구에게, 모두 당신의 비밀. 카피 트레이딩 방지, 대량 전송 추적 차단, 급여 프라이버시 보호. 자유롭게 돈을 쓰고, 누구도 보지 못하게.',
+    'features.encryptedmempool.title': '암호화된 멤풀',
+    'features.encryptedmempool.desc': '당신의 거래는 확인될 때까지 비밀로 유지됩니다. 멤풀에서 암호화되고, 블록 생성 시에만 공개——제로 프론트러닝, 제로 샌드위치 공격. DeFi 트레이더를 위한 궁극의 스텔스 모드.',
+    'features.prioritynode.title': '엔터프라이즈 노드 신뢰',
+    'features.prioritynode.desc': '신뢰할 수 있는 검증자 네트워크를 구축하세요. 검증된 노드에서만 동기화하고, 신뢰할 수 없는 체인을 거부합니다. 기관, 거래소, 인프라 운영자를 위한 엔터프라이즈급 보안.',
 
     'features.coreTitle': 'AGI 시대를 위한 구축',
     'features.coreSubtitle': '일반 컴퓨팅에서 일반 경제 대행까지. 자율 에이전트가 수익을 창출하고, 정산하고, 통치할 수 있는 완전한 인프라.',

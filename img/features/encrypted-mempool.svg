@@ -1,0 +1,28 @@
+<svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="mempoolGradient" x1="4" y1="4" x2="44" y2="44" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#06b6d4"/>
+      <stop offset="50%" stop-color="#8b5cf6"/>
+      <stop offset="100%" stop-color="#ec4899"/>
+    </linearGradient>
+  </defs>
+  <!-- Mempool container -->
+  <rect x="6" y="12" width="36" height="28" rx="4" stroke="url(#mempoolGradient)" stroke-width="2" fill="none"/>
+  <!-- Encrypted transactions (scrambled lines) -->
+  <path d="M12 20L16 22L14 20L18 22" stroke="url(#mempoolGradient)" stroke-width="1.5" stroke-linecap="round" opacity="0.7"/>
+  <path d="M22 20L26 22L24 20L28 22" stroke="url(#mempoolGradient)" stroke-width="1.5" stroke-linecap="round" opacity="0.7"/>
+  <path d="M32 20L36 22L34 20L38 22" stroke="url(#mempoolGradient)" stroke-width="1.5" stroke-linecap="round" opacity="0.7"/>
+  <!-- Lock symbol in center -->
+  <rect x="18" y="26" width="12" height="10" rx="2" stroke="url(#mempoolGradient)" stroke-width="2" fill="none"/>
+  <path d="M21 26V23C21 21 22 20 24 20C26 20 27 21 27 23V26" stroke="url(#mempoolGradient)" stroke-width="2" stroke-linecap="round"/>
+  <circle cx="24" cy="31" r="1.5" fill="url(#mempoolGradient)"/>
+  <!-- Encryption sparkles -->
+  <text x="10" y="18" font-family="monospace" font-size="5" fill="url(#mempoolGradient)" opacity="0.6">0x</text>
+  <text x="34" y="18" font-family="monospace" font-size="5" fill="url(#mempoolGradient)" opacity="0.6">**</text>
+  <!-- Shield indicator -->
+  <path d="M24 4L30 7V10C30 14 27 17 24 18C21 17 18 14 18 10V7L24 4Z" stroke="url(#mempoolGradient)" stroke-width="1.5" fill="none" opacity="0.8"/>
+  <path d="M22 10L24 12L28 8" stroke="url(#mempoolGradient)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" opacity="0.8"/>
+  <!-- Block reveal indicator -->
+  <path d="M8 44L12 42L8 40" stroke="url(#mempoolGradient)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" opacity="0.6"/>
+  <path d="M40 44L36 42L40 40" stroke="url(#mempoolGradient)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" opacity="0.6"/>
+</svg>

@@ -1,0 +1,26 @@
+<svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="mevGradient" x1="4" y1="4" x2="44" y2="44" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#ef4444"/>
+      <stop offset="100%" stop-color="#f97316"/>
+    </linearGradient>
+  </defs>
+  <!-- Shield -->
+  <path d="M24 4L6 12V24C6 34 14 42 24 46C34 42 42 34 42 24V12L24 4Z" stroke="url(#mevGradient)" stroke-width="2" fill="none"/>
+  <!-- Shield inner glow -->
+  <path d="M24 8L10 14V24C10 32 16 38 24 42C32 38 38 32 38 24V14L24 8Z" stroke="url(#mevGradient)" stroke-width="1" fill="none" opacity="0.4"/>
+  <!-- Blocked attack arrows -->
+  <path d="M4 20L10 24" stroke="url(#mevGradient)" stroke-width="2" stroke-linecap="round" opacity="0.6"/>
+  <path d="M6 18L4 20L6 22" stroke="url(#mevGradient)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" opacity="0.6"/>
+  <path d="M44 20L38 24" stroke="url(#mevGradient)" stroke-width="2" stroke-linecap="round" opacity="0.6"/>
+  <path d="M42 18L44 20L42 22" stroke="url(#mevGradient)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" opacity="0.6"/>
+  <!-- X marks for blocked -->
+  <path d="M12 22L16 26M16 22L12 26" stroke="url(#mevGradient)" stroke-width="1.5" stroke-linecap="round" opacity="0.8"/>
+  <path d="M32 22L36 26M36 22L32 26" stroke="url(#mevGradient)" stroke-width="1.5" stroke-linecap="round" opacity="0.8"/>
+  <!-- Lock in center -->
+  <rect x="20" y="22" width="8" height="8" rx="1" stroke="url(#mevGradient)" stroke-width="2" fill="none"/>
+  <path d="M22 22V19C22 17 23 16 24 16C25 16 26 17 26 19V22" stroke="url(#mevGradient)" stroke-width="2" stroke-linecap="round"/>
+  <circle cx="24" cy="26" r="1" fill="url(#mevGradient)"/>
+  <!-- FIFO indicator -->
+  <text x="18" y="40" font-family="Inter, sans-serif" font-size="5" font-weight="bold" fill="url(#mevGradient)" opacity="0.8">FIFO</text>
+</svg>

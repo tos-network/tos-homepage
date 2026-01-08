@@ -1,0 +1,34 @@
+<svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bridgeGradient" x1="4" y1="4" x2="44" y2="44" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#6366f1"/>
+      <stop offset="100%" stop-color="#8b5cf6"/>
+    </linearGradient>
+  </defs>
+  <!-- Left chain (blocks) -->
+  <rect x="4" y="18" width="8" height="8" rx="1" stroke="url(#bridgeGradient)" stroke-width="2" fill="none"/>
+  <rect x="4" y="28" width="8" height="8" rx="1" stroke="url(#bridgeGradient)" stroke-width="2" fill="none"/>
+  <rect x="4" y="38" width="8" height="8" rx="1" stroke="url(#bridgeGradient)" stroke-width="2" fill="none"/>
+  <line x1="8" y1="26" x2="8" y2="28" stroke="url(#bridgeGradient)" stroke-width="1.5"/>
+  <line x1="8" y1="36" x2="8" y2="38" stroke="url(#bridgeGradient)" stroke-width="1.5"/>
+  <!-- Right chain (blocks) -->
+  <rect x="36" y="18" width="8" height="8" rx="1" stroke="url(#bridgeGradient)" stroke-width="2" fill="none"/>
+  <rect x="36" y="28" width="8" height="8" rx="1" stroke="url(#bridgeGradient)" stroke-width="2" fill="none"/>
+  <rect x="36" y="38" width="8" height="8" rx="1" stroke="url(#bridgeGradient)" stroke-width="2" fill="none"/>
+  <line x1="40" y1="26" x2="40" y2="28" stroke="url(#bridgeGradient)" stroke-width="1.5"/>
+  <line x1="40" y1="36" x2="40" y2="38" stroke="url(#bridgeGradient)" stroke-width="1.5"/>
+  <!-- Bridge arch -->
+  <path d="M12 22C12 12 24 4 24 4C24 4 36 12 36 22" stroke="url(#bridgeGradient)" stroke-width="2" fill="none" stroke-linecap="round"/>
+  <!-- Bridge deck -->
+  <line x1="12" y1="22" x2="36" y2="22" stroke="url(#bridgeGradient)" stroke-width="2" stroke-linecap="round"/>
+  <!-- Bridge supports -->
+  <line x1="18" y1="14" x2="18" y2="22" stroke="url(#bridgeGradient)" stroke-width="1.5"/>
+  <line x1="24" y1="10" x2="24" y2="22" stroke="url(#bridgeGradient)" stroke-width="1.5"/>
+  <line x1="30" y1="14" x2="30" y2="22" stroke="url(#bridgeGradient)" stroke-width="1.5"/>
+  <!-- Transfer arrow -->
+  <path d="M16 32L32 32" stroke="url(#bridgeGradient)" stroke-width="2" stroke-linecap="round" opacity="0.8"/>
+  <path d="M28 28L32 32L28 36" stroke="url(#bridgeGradient)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" opacity="0.8"/>
+  <!-- Chain labels -->
+  <text x="5" y="14" font-family="Inter, sans-serif" font-size="4" fill="url(#bridgeGradient)" opacity="0.7">ETH</text>
+  <text x="37" y="14" font-family="Inter, sans-serif" font-size="4" fill="url(#bridgeGradient)" opacity="0.7">TOS</text>
+</svg>

@@ -1,0 +1,26 @@
+<svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="vrfGradient" x1="4" y1="4" x2="44" y2="44" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#8b5cf6"/>
+      <stop offset="100%" stop-color="#ec4899"/>
+    </linearGradient>
+  </defs>
+  <!-- Dice -->
+  <rect x="8" y="8" width="20" height="20" rx="3" stroke="url(#vrfGradient)" stroke-width="2" fill="none" transform="rotate(-10 18 18)"/>
+  <!-- Dice dots -->
+  <circle cx="13" cy="13" r="2" fill="url(#vrfGradient)" opacity="0.8"/>
+  <circle cx="23" cy="13" r="2" fill="url(#vrfGradient)" opacity="0.8"/>
+  <circle cx="18" cy="18" r="2" fill="url(#vrfGradient)" opacity="0.8"/>
+  <circle cx="13" cy="23" r="2" fill="url(#vrfGradient)" opacity="0.8"/>
+  <circle cx="23" cy="23" r="2" fill="url(#vrfGradient)" opacity="0.8"/>
+  <!-- Verification checkmark -->
+  <circle cx="36" cy="14" r="8" stroke="url(#vrfGradient)" stroke-width="2" fill="none"/>
+  <path d="M32 14L35 17L41 11" stroke="url(#vrfGradient)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+  <!-- Random wave pattern -->
+  <path d="M8 36C12 32 16 40 20 36C24 32 28 40 32 36C36 32 40 40 44 36" stroke="url(#vrfGradient)" stroke-width="2" stroke-linecap="round" opacity="0.7"/>
+  <!-- Sparkles -->
+  <path d="M40 28L42 30L40 32L38 30Z" fill="url(#vrfGradient)" opacity="0.6"/>
+  <path d="M6 30L8 32L6 34L4 32Z" fill="url(#vrfGradient)" opacity="0.6"/>
+  <!-- Mathematical symbols -->
+  <text x="28" y="44" font-family="Inter, sans-serif" font-size="8" font-weight="bold" fill="url(#vrfGradient)" opacity="0.8">VRF</text>
+</svg>

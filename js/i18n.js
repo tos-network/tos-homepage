@@ -98,6 +98,8 @@ const translations = {
     'features.nftsupport.desc': 'Batch mint, one-click transfer, automatic royalty enforcement. From game items to membership rights, from art collections to event tickets—ultra-low cost, unlimited possibilities.',
     'features.unoprivacy.title': 'UNO Privacy Transfer',
     'features.unoprivacy.desc': 'Your wealth, only you know. Hidden amounts, encrypted recipients—how much and to whom, all your secret. Betting without copycats, large transfers without tracking, payroll with privacy. Spend freely, no one watching.',
+    'features.tosignal.title': 'TOSignal',
+    'features.tosignal.desc': 'Private Messages. Public Blockchain. Zero Trust. Send end-to-end encrypted ephemeral messages to any TOS name. Curve25519 key exchange, ChaCha20 encryption, on-chain delivery with automatic expiry. Your keys, your messages—no intermediaries, no metadata leaks.',
 
     'features.coreTitle': 'Built for the AGI Era',
     'features.coreSubtitle': 'From general computation to general economic agency. The complete infrastructure for autonomous agents to earn, settle, and govern.',
@@ -272,6 +274,8 @@ const translations = {
     'features.nftsupport.desc': '批量铸造、一键转移、版税自动执行。从游戏道具到会员权益，从艺术收藏到活动门票——极低成本，无限可能。',
     'features.unoprivacy.title': 'UNO 隐私转账',
     'features.unoprivacy.desc': '你的财富，只有你知道。金额隐藏、接收者加密——花多少、给谁，都是你的秘密。博彩下注防跟单，大额转账防追踪，工资发放护隐私。自由花钱，无人窥探。',
+    'features.tosignal.title': 'TOSignal',
+    'features.tosignal.desc': '私密消息。公链传输。零信任。向任意 TOS 名称发送端到端加密的临时消息。Curve25519 密钥交换、ChaCha20 加密、链上投递自动过期。你的密钥，你的消息——无中间人，无元数据泄露。',
 
     'features.coreTitle': '为 AGI 时代而构建',
     'features.coreSubtitle': '从通用计算到通用经济代理。为自主代理提供赚取、结算和治理的完整基础设施。',
@@ -446,6 +450,8 @@ const translations = {
     'features.nftsupport.desc': '一括ミント、ワンクリック転送、ロイヤリティ自動執行。ゲームアイテムから会員権、アートコレクションからイベントチケットまで——超低コストで無限の可能性。',
     'features.unoprivacy.title': 'UNOプライバシー送金',
     'features.unoprivacy.desc': 'あなたの資産は、あなただけが知っている。金額を隠し、受取人を暗号化——いくら、誰に、すべてあなたの秘密。コピー取引を防ぎ、大口送金を追跡から守り、給与のプライバシーを保護。自由にお金を使い、誰にも見られない。',
+    'features.tosignal.title': 'TOSignal',
+    'features.tosignal.desc': 'プライベートメッセージ。パブリックブロックチェーン。ゼロトラスト。任意のTOS名にエンドツーエンド暗号化された一時メッセージを送信。Curve25519鍵交換、ChaCha20暗号化、オンチェーン配信で自動期限切れ。あなたの鍵、あなたのメッセージ——仲介者なし、メタデータ漏洩なし。',
 
     'features.coreTitle': 'AGI時代のために構築',
     'features.coreSubtitle': '一般的な計算から一般的な経済的エージェンシーへ。自律エージェントが稼ぎ、決済し、統治するための完全なインフラストラクチャ。',
@@ -620,6 +626,8 @@ const translations = {
     'features.nftsupport.desc': '일괄 민팅, 원클릭 전송, 로열티 자동 집행. 게임 아이템에서 멤버십 권리까지, 아트 컬렉션에서 이벤트 티켓까지——초저비용으로 무한한 가능성.',
     'features.unoprivacy.title': 'UNO 프라이버시 전송',
     'features.unoprivacy.desc': '당신의 자산은 당신만이 압니다. 금액 숨김, 수신자 암호화——얼마를, 누구에게, 모두 당신의 비밀. 카피 트레이딩 방지, 대량 전송 추적 차단, 급여 프라이버시 보호. 자유롭게 돈을 쓰고, 누구도 보지 못하게.',
+    'features.tosignal.title': 'TOSignal',
+    'features.tosignal.desc': '프라이빗 메시지. 퍼블릭 블록체인. 제로 트러스트. 모든 TOS 이름에 엔드투엔드 암호화된 임시 메시지를 전송. Curve25519 키 교환, ChaCha20 암호화, 온체인 전달 및 자동 만료. 당신의 키, 당신의 메시지——중개자 없음, 메타데이터 유출 없음.',
 
     'features.coreTitle': 'AGI 시대를 위한 구축',
     'features.coreSubtitle': '일반 컴퓨팅에서 일반 경제 대행까지. 자율 에이전트가 수익을 창출하고, 정산하고, 통치할 수 있는 완전한 인프라.',

@@ -9,8 +9,13 @@ class TOSMusicPlayer {
         this.playing = false;
         this.lyricsBar = null;
         this.lyricsTrack = null;
+        this.progressBar = null;
         this.currentLine = -1;
         this.animFrame = null;
+        this.lyricDisplayLag = 0.45;
+        this.isSeeking = false;
+        this.seekPointerId = null;
+        this.seekResumePlayback = false;
 
         // Lyrics with calibrated timestamps (seconds)
         this.lyrics = [
@@ -98,7 +103,21 @@ class TOSMusicPlayer {
         const progressFill = document.createElement('div');
         progressFill.className = 'lyrics-progress-fill';
         progress.appendChild(progressFill);
+        this.progressBar = progress;
         this.progressFill = progressFill;
+
+        progress.addEventListener('click', (event) => this.seekToClientX(event.clientX));
+        progress.addEventListener('pointerdown', (event) => this.beginSeek(event));
+        progress.addEventListener('pointermove', (event) => this.updateSeek(event));
+        progress.addEventListener('pointerup', (event) => this.endSeek(event));
+        progress.addEventListener('pointercancel', (event) => this.endSeek(event));
+        progress.addEventListener('mousedown', (event) => this.beginMouseSeek(event));
+        progress.addEventListener('touchstart', (event) => this.beginTouchSeek(event), { passive: false });
+        document.addEventListener('mousemove', (event) => this.updateMouseSeek(event));
+        document.addEventListener('mouseup', () => this.endMouseSeek());
+        document.addEventListener('touchmove', (event) => this.updateTouchSeek(event), { passive: false });
+        document.addEventListener('touchend', () => this.endTouchSeek());
+        document.addEventListener('touchcancel', () => this.endTouchSeek());
 
         // Scrolling lyrics track — inline styles ensure mobile clipping
         const lyricsWindow = document.createElement('div');
@@ -205,10 +224,131 @@ class TOSMusicPlayer {
 
     /* ========== Lyrics sync ========== */
 
+    seekToClientX(clientX) {
+        if (!this.audio || !this.progressBar) return;
+
+        const rect = this.progressBar.getBoundingClientRect();
+        if (!rect.width) return;
+
+        const pct = Math.min(1, Math.max(0, (clientX - rect.left) / rect.width));
+        const duration = this.audio.duration || 281;
+        const nextTime = pct * duration;
+
+        this.audio.currentTime = nextTime;
+
+        if (this.progressFill) {
+            this.progressFill.style.width = (pct * 100) + '%';
+        }
+
+        if (this.timeDisplay) {
+            const cm = Math.floor(nextTime / 60);
+            const cs = Math.floor(nextTime % 60);
+            const dm = Math.floor(duration / 60);
+            const ds = Math.floor(duration % 60);
+            this.timeDisplay.textContent =
+                `${cm}:${cs < 10 ? '0' : ''}${cs} / ${dm}:${ds < 10 ? '0' : ''}${ds}`;
+        }
+    }
+
+    beginSeek(event) {
+        if (!this.audio || !this.progressBar) return;
+
+        this.isSeeking = true;
+        this.seekPointerId = event.pointerId;
+        this.startSeekInteraction();
+        this.progressBar.setPointerCapture?.(event.pointerId);
+        this.seekToClientX(event.clientX);
+        event.preventDefault();
+    }
+
+    updateSeek(event) {
+        if (!this.isSeeking || event.pointerId !== this.seekPointerId) return;
+        this.seekToClientX(event.clientX);
+    }
+
+    endSeek(event) {
+        if (!this.isSeeking) return;
+        if (event.pointerId !== this.seekPointerId) return;
+
+        if (this.progressBar?.hasPointerCapture?.(this.seekPointerId)) {
+            this.progressBar.releasePointerCapture(this.seekPointerId);
+        }
+
+        this.isSeeking = false;
+        this.seekPointerId = null;
+        this.finishSeekInteraction();
+    }
+
+    beginMouseSeek(event) {
+        if (window.PointerEvent) return;
+        this.isSeeking = true;
+        this.startSeekInteraction();
+        this.seekToClientX(event.clientX);
+        event.preventDefault();
+    }
+
+    updateMouseSeek(event) {
+        if (!this.isSeeking || window.PointerEvent) return;
+        this.seekToClientX(event.clientX);
+    }
+
+    endMouseSeek() {
+        if (window.PointerEvent || !this.isSeeking) return;
+        this.isSeeking = false;
+        this.finishSeekInteraction();
+    }
+
+    beginTouchSeek(event) {
+        if (window.PointerEvent) return;
+        const touch = event.touches[0];
+        if (!touch) return;
+        this.isSeeking = true;
+        this.startSeekInteraction();
+        this.seekToClientX(touch.clientX);
+        event.preventDefault();
+    }
+
+    updateTouchSeek(event) {
+        if (!this.isSeeking || window.PointerEvent) return;
+        const touch = event.touches[0];
+        if (!touch) return;
+        this.seekToClientX(touch.clientX);
+        event.preventDefault();
+    }
+
+    endTouchSeek() {
+        if (window.PointerEvent || !this.isSeeking) return;
+        this.isSeeking = false;
+        this.finishSeekInteraction();
+    }
+
+    startSeekInteraction() {
+        if (!this.audio) return;
+
+        this.seekResumePlayback = this.playing && !this.audio.paused;
+        if (this.seekResumePlayback) {
+            this.audio.pause();
+        }
+
+        this.progressFill?.classList.add('is-seeking');
+    }
+
+    finishSeekInteraction() {
+        this.progressFill?.classList.remove('is-seeking');
+
+        if (this.seekResumePlayback) {
+            const playPromise = this.audio?.play();
+            playPromise?.catch?.(() => {});
+        }
+
+        this.seekResumePlayback = false;
+    }
+
     syncLyrics() {
         if (!this.playing) return;
 
         const time = this.audio.currentTime;
+        const syncedTime = Math.max(0, time - this.lyricDisplayLag);
         const duration = this.audio.duration || 281;
 
         // Update progress bar
@@ -229,7 +369,7 @@ class TOSMusicPlayer {
         // Find current lyric line
         let lineIdx = -1;
         for (let i = this.lyrics.length - 1; i >= 0; i--) {
-            if (time >= this.lyrics[i].t) {
+            if (syncedTime >= this.lyrics[i].t) {
                 lineIdx = i;
                 break;
             }

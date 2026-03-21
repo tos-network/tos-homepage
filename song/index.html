@@ -307,6 +307,7 @@
             cursor: pointer;
             position: relative;
             transition: height 0.15s;
+            touch-action: none;
         }
 
         .progress-bar:hover {
@@ -320,6 +321,10 @@
             border-radius: 4px;
             transition: width 0.25s linear;
             position: relative;
+        }
+
+        .progress-fill.is-seeking {
+            transition: none;
         }
 
         /* Seek thumb */
@@ -648,6 +653,10 @@
 
     let currentLine = -1;
     let playing = false;
+    let isSeeking = false;
+    let seekPointerId = null;
+    let seekResumePlayback = false;
+    const lyricDisplayLag = 0.45;
 
     // Set initial volume
     audio.volume = 0.8;
@@ -693,12 +702,120 @@
         }
     });
 
-    // Seek on progress bar click
-    progressBar.addEventListener('click', (e) => {
+    function seekToClientX(clientX) {
         const rect = progressBar.getBoundingClientRect();
-        const pct = (e.clientX - rect.left) / rect.width;
-        audio.currentTime = pct * (audio.duration || 281);
-    });
+        if (!rect.width) return;
+
+        const pct = Math.min(1, Math.max(0, (clientX - rect.left) / rect.width));
+        const nextTime = pct * (audio.duration || 281);
+
+        audio.currentTime = nextTime;
+        progressFill.style.width = (pct * 100) + '%';
+        timeCurrent.textContent = fmt(nextTime);
+    }
+
+    function beginSeek(e) {
+        isSeeking = true;
+        seekPointerId = e.pointerId;
+        startSeekInteraction();
+        progressBar.setPointerCapture?.(e.pointerId);
+        seekToClientX(e.clientX);
+        e.preventDefault();
+    }
+
+    function updateSeek(e) {
+        if (!isSeeking || e.pointerId !== seekPointerId) return;
+        seekToClientX(e.clientX);
+    }
+
+    function endSeek(e) {
+        if (!isSeeking || e.pointerId !== seekPointerId) return;
+
+        if (progressBar.hasPointerCapture?.(seekPointerId)) {
+            progressBar.releasePointerCapture(seekPointerId);
+        }
+
+        isSeeking = false;
+        seekPointerId = null;
+        finishSeekInteraction();
+    }
+
+    function beginMouseSeek(e) {
+        if (window.PointerEvent) return;
+        isSeeking = true;
+        startSeekInteraction();
+        seekToClientX(e.clientX);
+        e.preventDefault();
+    }
+
+    function updateMouseSeek(e) {
+        if (!isSeeking || window.PointerEvent) return;
+        seekToClientX(e.clientX);
+    }
+
+    function endMouseSeek() {
+        if (window.PointerEvent || !isSeeking) return;
+        isSeeking = false;
+        seekPointerId = null;
+        finishSeekInteraction();
+    }
+
+    function beginTouchSeek(e) {
+        if (window.PointerEvent) return;
+        const touch = e.touches[0];
+        if (!touch) return;
+        isSeeking = true;
+        startSeekInteraction();
+        seekToClientX(touch.clientX);
+        e.preventDefault();
+    }
+
+    function updateTouchSeek(e) {
+        if (!isSeeking || window.PointerEvent) return;
+        const touch = e.touches[0];
+        if (!touch) return;
+        seekToClientX(touch.clientX);
+        e.preventDefault();
+    }
+
+    function endTouchSeek() {
+        if (window.PointerEvent || !isSeeking) return;
+        isSeeking = false;
+        seekPointerId = null;
+        finishSeekInteraction();
+    }
+
+    function startSeekInteraction() {
+        seekResumePlayback = playing && !audio.paused;
+        if (seekResumePlayback) {
+            audio.pause();
+        }
+        progressFill.classList.add('is-seeking');
+    }
+
+    function finishSeekInteraction() {
+        progressFill.classList.remove('is-seeking');
+
+        if (seekResumePlayback) {
+            const playPromise = audio.play();
+            playPromise?.catch?.(() => {});
+        }
+
+        seekResumePlayback = false;
+    }
+
+    progressBar.addEventListener('click', (e) => seekToClientX(e.clientX));
+    progressBar.addEventListener('pointerdown', beginSeek);
+    progressBar.addEventListener('pointermove', updateSeek);
+    progressBar.addEventListener('pointerup', endSeek);
+    progressBar.addEventListener('pointercancel', endSeek);
+    progressBar.addEventListener('mousedown', beginMouseSeek);
+    progressBar.addEventListener('touchstart', beginTouchSeek, { passive: false });
+    document.addEventListener('mousemove', updateMouseSeek);
+    document.addEventListener('mouseup', endMouseSeek);
+    document.addEventListener('touchmove', updateTouchSeek, { passive: false });
+    document.addEventListener('touchend', endTouchSeek);
+    document.addEventListener('touchcancel', endTouchSeek);
 
     audio.addEventListener('ended', () => {
         setPlaying(false);
@@ -766,12 +883,13 @@
     function sync() {
         if (audio.duration) {
             const t = audio.currentTime;
+            const syncedTime = Math.max(0, t - lyricDisplayLag);
             progressFill.style.width = (t / audio.duration * 100) + '%';
             timeCurrent.textContent = fmt(t);
 
             let idx = -1;
             for (let i = lyrics.length - 1; i >= 0; i--) {
-                if (t >= lyrics[i].t) { idx = i; break; }
+                if (syncedTime >= lyrics[i].t) { idx = i; break; }
             }
 
             if (idx !== currentLine) {

@@ -117,6 +117,10 @@
     flex: 1;
     min-width: 0;
     overflow: hidden;
+    position: relative;
+    /* Fade edges */
+    -webkit-mask-image: linear-gradient(to right, transparent 0%, #000 10%, #000 90%, transparent 100%);
+    mask-image: linear-gradient(to right, transparent 0%, #000 10%, #000 90%, transparent 100%);
 }
 
 .lyrics-window {
@@ -131,6 +135,7 @@
     white-space: nowrap;
     transition: transform 0.6s cubic-bezier(0.25, 0.1, 0.25, 1);
     padding: 0 20px;
+    will-change: transform;
 }
 
 .lyrics-line {
@@ -185,7 +190,7 @@
     .lyrics-bar {
         height: 48px;
         padding: 0 12px;
-        gap: 10px;
+        gap: 8px;
     }
 
     .tos-music-btn {
@@ -196,38 +201,27 @@
     }
 
     .lyrics-bar-left {
-        min-width: 80px;
-    }
-
-    .lyrics-title {
-        font-size: 11px;
-    }
-
-    .lyrics-artist {
         display: none;
     }
 
     .lyrics-line {
-        font-size: 12px;
+        font-size: 13px;
         line-height: 48px;
     }
 
     .lyrics-track {
-        gap: 24px;
+        gap: 20px;
+    }
+
+    /* Hide non-active lyrics on mobile — show only current + neighbors */
+    .lyrics-line:not(.active):not(.active ~ .lyrics-line:first-of-type) {
+        max-width: 120px;
+        overflow: hidden;
+        text-overflow: ellipsis;
     }
 
     .lyrics-time {
         font-size: 11px;
-    }
-
-    .lyrics-bar-right {
-        min-width: 70px;
-    }
-}
-
-@media (max-width: 480px) {
-    .lyrics-bar-left {
-        display: none;
     }
 
     .lyrics-bar-right {

@@ -25,10 +25,11 @@ class WaveAnimation {
         this.canvas.height = this.h * dpr;
         this.ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
 
-        // Scale factor relative to original 400x400
+        // Scale factor — use width on mobile (narrow screens) for better fit
         this.scale = Math.min(this.w, this.h) / 400;
         this.cx = this.w / 2;
-        this.cy = this.h / 2;
+        this.cy = this.h * 0.35; // shift up on tall containers
+        this.isMobile = this.w < 768;
     }
 
     bindEvents() {
@@ -83,11 +84,13 @@ class WaveAnimation {
 
         this.t += Math.PI / 240;
 
-        const totalPoints = 20000;
+        // Fewer particles on mobile for performance and cleaner look
+        const totalPoints = this.isMobile ? 10000 : 20000;
+        const gridW = this.isMobile ? 200 : 200;
 
         for (let i = 0; i < totalPoints; i++) {
             const k = (i / 8) % 25 - 12.5;
-            const e = i / 800 - 12.5;
+            const e = (this.isMobile ? i / 400 : i / 800) - 12.5;
             const dist = this.mag(k, e);
             const d = 7 * Math.cos(dist / 3 - this.t / 2);
 
@@ -104,7 +107,8 @@ class WaveAnimation {
             const alpha = 0.25 + 0.18 * Math.abs(Math.cos(d));
 
             ctx.fillStyle = `rgba(${r},${g},${b},${alpha})`;
-            ctx.fillRect(px, py, 1.5 * scale, 1.5 * scale);
+            const sz = (this.isMobile ? 1.8 : 1.5) * scale;
+            ctx.fillRect(px, py, sz, sz);
         }
 
         this.animId = requestAnimationFrame(() => this.animate());

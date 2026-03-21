@@ -101,9 +101,12 @@ class TOSMusicPlayer {
         progress.appendChild(progressFill);
         this.progressFill = progressFill;
 
-        // Scrolling lyrics track
+        // Scrolling lyrics track — inline styles ensure mobile clipping
         const lyricsWindow = document.createElement('div');
         lyricsWindow.className = 'lyrics-window';
+        lyricsWindow.style.overflow = 'hidden';
+        lyricsWindow.style.width = '100%';
+        lyricsWindow.style.position = 'relative';
         this.lyricsTrack = document.createElement('div');
         this.lyricsTrack.className = 'lyrics-track';
 

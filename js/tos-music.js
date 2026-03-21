@@ -81,7 +81,7 @@ class TOSMusicPlayer {
         if (this.audio) return;
         this.audio = new Audio('song/DigitalDawn.mp3');
         this.audio.preload = 'auto';
-        this.audio.addEventListener('ended', () => this.onEnded());
+        this.audio.loop = true;
         this.buildLyricsBar();
     }
 

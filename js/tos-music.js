@@ -10,12 +10,20 @@ class TOSMusicPlayer {
         this.lyricsBar = null;
         this.lyricsTrack = null;
         this.progressBar = null;
+        this.visualizerCanvas = null;
+        this.visualizerCtx = null;
+        this.visualizerData = null;
+        this.visualizerDpr = 1;
+        this.audioContext = null;
+        this.audioSource = null;
+        this.analyser = null;
         this.currentLine = -1;
         this.animFrame = null;
         this.lyricDisplayLag = 0.45;
         this.isSeeking = false;
         this.seekPointerId = null;
         this.seekResumePlayback = false;
+        this.handleResizeVisualizer = () => this.resizeVisualizer();
 
         // Lyrics with calibrated timestamps (seconds)
         this.lyrics = [
@@ -160,6 +168,11 @@ class TOSMusicPlayer {
 
         const center = document.createElement('div');
         center.className = 'lyrics-bar-center';
+        const visualizer = document.createElement('canvas');
+        visualizer.className = 'lyrics-visualizer';
+        visualizer.setAttribute('aria-hidden', 'true');
+        this.visualizerCanvas = visualizer;
+        center.appendChild(visualizer);
         center.appendChild(lyricsWindow);
 
         const right = document.createElement('div');
@@ -180,8 +193,11 @@ class TOSMusicPlayer {
         this.init();
         if (this.playing) return;
         this.playing = true;
+        this.initVisualizer();
+        this.audioContext?.resume?.();
         this.audio.play();
         this.lyricsBar.style.display = 'flex';
+        this.lyricsBar.classList.add('is-playing');
         this.syncLyrics();
     }
 
@@ -189,6 +205,8 @@ class TOSMusicPlayer {
         if (!this.playing) return;
         this.playing = false;
         this.audio.pause();
+        this.lyricsBar?.classList.remove('is-playing');
+        this.clearVisualizer();
         if (this.animFrame) {
             cancelAnimationFrame(this.animFrame);
             this.animFrame = null;
@@ -207,6 +225,8 @@ class TOSMusicPlayer {
     onEnded() {
         this.playing = false;
         this.currentLine = -1;
+        this.lyricsBar?.classList.remove('is-playing');
+        this.clearVisualizer();
         // Reset UI
         const btn = document.querySelector('.tos-music-btn');
         if (btn) {
@@ -223,6 +243,95 @@ class TOSMusicPlayer {
     }
 
     /* ========== Lyrics sync ========== */
+
+    initVisualizer() {
+        if (this.analyser || !this.audio || !this.visualizerCanvas) return;
+
+        const AudioContextCtor = window.AudioContext || window.webkitAudioContext;
+        if (!AudioContextCtor) return;
+
+        this.audioContext = new AudioContextCtor();
+        this.audioSource = this.audioContext.createMediaElementSource(this.audio);
+        this.analyser = this.audioContext.createAnalyser();
+        this.analyser.fftSize = 128;
+        this.analyser.smoothingTimeConstant = 0.82;
+        this.audioSource.connect(this.analyser);
+        this.analyser.connect(this.audioContext.destination);
+
+        this.visualizerCtx = this.visualizerCanvas.getContext('2d');
+        this.resizeVisualizer();
+        window.addEventListener('resize', this.handleResizeVisualizer);
+    }
+
+    resizeVisualizer() {
+        if (!this.visualizerCanvas || !this.visualizerCtx) return;
+
+        const rect = this.visualizerCanvas.parentElement?.getBoundingClientRect();
+        if (!rect || !rect.width) return;
+
+        this.visualizerDpr = Math.min(window.devicePixelRatio || 1, 2);
+        const cssWidth = rect.width;
+        const cssHeight = this.visualizerCanvas.classList.contains('lyrics-visualizer') &&
+            window.matchMedia('(max-width: 768px)').matches ? 40 : 50;
+
+        this.visualizerCanvas.width = Math.round(cssWidth * this.visualizerDpr);
+        this.visualizerCanvas.height = Math.round(cssHeight * this.visualizerDpr);
+        this.visualizerCtx.setTransform(this.visualizerDpr, 0, 0, this.visualizerDpr, 0, 0);
+    }
+
+    clearVisualizer() {
+        if (!this.visualizerCtx || !this.visualizerCanvas) return;
+
+        const width = this.visualizerCanvas.width / this.visualizerDpr;
+        const height = this.visualizerCanvas.height / this.visualizerDpr;
+        this.visualizerCtx.clearRect(0, 0, width, height);
+    }
+
+    renderVisualizer() {
+        if (!this.analyser || !this.visualizerCtx || !this.visualizerCanvas) return;
+
+        const width = this.visualizerCanvas.width / this.visualizerDpr;
+        const height = this.visualizerCanvas.height / this.visualizerDpr;
+        if (!width || !height) return;
+
+        if (!this.visualizerData || this.visualizerData.length !== this.analyser.frequencyBinCount) {
+            this.visualizerData = new Uint8Array(this.analyser.frequencyBinCount);
+        }
+
+        this.analyser.getByteFrequencyData(this.visualizerData);
+        const ctx = this.visualizerCtx;
+        ctx.clearRect(0, 0, width, height);
+
+        const bars = 28;
+        const gap = 3;
+        const barWidth = Math.max(4, (width - gap * (bars - 1)) / bars);
+        const segmentHeight = 4;
+        const segmentGap = 2;
+
+        for (let i = 0; i < bars; i++) {
+            const start = Math.floor(i * this.visualizerData.length / bars);
+            const end = Math.max(start + 1, Math.floor((i + 1) * this.visualizerData.length / bars));
+            let sum = 0;
+            for (let j = start; j < end; j++) {
+                sum += this.visualizerData[j];
+            }
+
+            const amplitude = (sum / (end - start)) / 255;
+            const usableHeight = amplitude * height * 1.22;
+            const segments = Math.max(0, Math.floor(usableHeight / (segmentHeight + segmentGap)));
+            const x = i * (barWidth + gap);
+
+            for (let seg = 0; seg < segments; seg++) {
+                const y = height - (seg + 1) * segmentHeight - seg * segmentGap;
+                const alpha = 0.16 + (seg / Math.max(1, segments)) * 0.5;
+                const grad = ctx.createLinearGradient(0, y + segmentHeight, 0, y);
+                grad.addColorStop(0, `rgba(96, 165, 250, ${alpha})`);
+                grad.addColorStop(1, `rgba(0, 212, 255, ${Math.min(0.9, alpha + 0.15)})`);
+                ctx.fillStyle = grad;
+                ctx.fillRect(x, y, barWidth, segmentHeight);
+            }
+        }
+    }
 
     seekToClientX(clientX) {
         if (!this.audio || !this.progressBar) return;
@@ -350,6 +459,7 @@ class TOSMusicPlayer {
         const time = this.audio.currentTime;
         const syncedTime = Math.max(0, time - this.lyricDisplayLag);
         const duration = this.audio.duration || 281;
+        this.renderVisualizer();
 
         // Update progress bar
         if (this.progressFill) {
